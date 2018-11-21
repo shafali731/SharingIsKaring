@@ -15,4 +15,12 @@ ______   ______   __   __   __       ______   _______
 
 ============================================================
 
-topherM -- 1999-12-31 23:59
+karenLi -- 2018-11-20 13:00
+--------------------------------------------------------------
+1. Decided to use OMDb, Open Library, and Google Books API to
+create a site that allows users to store information about books
+they have read and want to read and  movies they have watched and
+want to watch. In addition, the site will provide individual
+book and movie information as well as generate a book or movie
+recommendation based on user input.
+==============================================================

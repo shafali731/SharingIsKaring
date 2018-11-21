@@ -15,7 +15,7 @@ ______   ______   __   __   __       ______   _______
 
 ============================================================
 
-karenLi -- 2018-11-20 13:00
+karenL -- 2018-11-20 13:00
 --------------------------------------------------------------
 1. Decided to use OMDb, Open Library, and Google Books API to
 create a site that allows users to store information about books

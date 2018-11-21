@@ -24,3 +24,10 @@ want to watch. In addition, the site will provide individual
 book and movie information as well as generate a book or movie
 recommendation based on user input.
 ==============================================================
+
+team -- 2018-11-21 13:20
+--------------------------------------------------------------
+1. Clarify APIs to be used
+2. Specify CSS type (Bootstrap)
+3. Clarify component map and site map
+==============================================================

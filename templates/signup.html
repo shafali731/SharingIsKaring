@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-Login
+Signup
 {% endblock %}
 
 {% block content %}
 <div class="container-fluid">
-  <h1> Login </h1>
+  <h1> Signup </h1>
   <form>
     <div class="form-group">
       <label for="username">Username</label>
@@ -16,7 +16,11 @@ Login
       <label for="password">Password</label>
       <input type="password" class="form-control" id="password" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-primary">Log in</button>
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input type="password" class="form-control" id="confirm_password" placeholder="Password">
+    </div>
+    <button type="submit" class="btn btn-primary">Sign up</button>
   </form>
 
   <br>
@@ -28,7 +32,5 @@ Login
   <br>
   {% endif %}
   
-  Don't have an account? <br>
-  <a href="/signup">Signup</a> 
 </div>
 {% endblock %}

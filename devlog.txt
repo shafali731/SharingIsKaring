@@ -27,7 +27,16 @@ recommendation based on user input.
 
 team -- 2018-11-21 13:20
 --------------------------------------------------------------
-1. Clarify APIs to be used
-2. Specify CSS type (Bootstrap)
-3. Clarify component map and site map
+1. Clarify APIs to be used.
+2. Specify CSS type (Bootstrap).
+3. Clarify component map and site map.
+==============================================================
+
+karenL -- 2018-11-23 15:57
+--------------------------------------------------------------
+1. Created primitive templates (base, index, login, signup, 
+movie_info, book_info) with basic CSS.
+2. Created basic app routes (index, login, signup, book, movie)
+that render their respective templates.
+3. Generated OMDb API key to use. 
 ==============================================================

@@ -4,6 +4,18 @@
 Homepage
 {% endblock %}
 
+{% block header %}
+  <ul class="nav navbar-nav navbar-right">
+    {% if loggedIn %}
+      <p class="navbar-text"><b>Logged in as {{user}}</b></p>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+    {% else %}
+      <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    {% endif %}
+  </ul>
+{% endblock %}
+
 {% block content %}
 
 {% endblock %}

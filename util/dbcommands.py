@@ -36,3 +36,14 @@ def get_user_id(username):
     user_id = c.fetchall()
     db.close()
     return user_id[0][0]
+
+
+def get_username(id):
+    '''get username based on id'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT username FROM users WHERE id = ?;"
+    c.execute(command,(id,))
+    name = c.fetchall()
+    db.close()
+    return name[0][0]

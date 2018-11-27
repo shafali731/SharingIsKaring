@@ -17,7 +17,9 @@ def is_logged_in():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if (is_logged_in()):
+       return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]) )
+    return render_template('index.html' , loggedIn=False)
 
 @app.route('/login')
 def login():
@@ -77,12 +79,19 @@ def signupAuthenticate():
         flash("Successfully Registered, Now Sign In!")
         return redirect(url_for('index'))
 
-@app.route('/book_info/<bookID>')
-def book(book):
+@app.route("/logout")
+def logout():
+    '''Deletes the current session and redirects back to login page.'''
+    session.pop("id")
+    return redirect(url_for("index"))
+
+
+@app.route('/book_info/<int:bookID>')
+def book(bookID):
     return render_template('book_info.html')
 
-@app.route('/movie_info/<movieID>')
-def movie(movie):
+@app.route('/movie_info/<int:movieID>')
+def movie(movieID):
     return render_template('movie_info.html')
 
 

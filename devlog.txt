@@ -34,9 +34,15 @@ team -- 2018-11-21 13:20
 
 karenL -- 2018-11-23 15:57
 --------------------------------------------------------------
-1. Created primitive templates (base, index, login, signup, 
+1. Created primitive templates (base, index, login, signup,
 movie_info, book_info) with basic CSS.
 2. Created basic app routes (index, login, signup, book, movie)
 that render their respective templates.
-3. Generated OMDb API key to use. 
+3. Generated OMDb API key to use.
+==============================================================
+
+ShafaliG -- 2018-11-26 13:10
+--------------------------------------------------------------
+1. Updated README to include roster and explanation of project.
+2. Included what APIs we are using for the project in design doc. 
 ==============================================================

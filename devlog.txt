@@ -51,3 +51,13 @@ JabirC -- 2018-11-26 22:10
 --------------------------------------------------------------
 1. Updated database schema by removing confusing lines.
 ==============================================================
+
+JabirC -- 2018-11-26 23:29
+--------------------------------------------------------------
+1. Added login and signup functionality with flash messages
+when there are errors.
+2. Created database as well as a makedatabase script to allow
+for database deletion and recreation.
+3. Added a script to utils for facilitating communication with 
+the database.
+==============================================================

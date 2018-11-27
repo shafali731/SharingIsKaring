@@ -6,13 +6,20 @@ Login
 
 {% block content %}
 
-  <h1> Login </h1>
+<h1> Login </h1>
 
-  {% set msgs = get_flashed_messages() %}
-  {% for each in msgs %}
-      <div class="alert alert-danger" role="alert">
-        {{each}}
-      </div><br>
+{% set msgs = get_flashed_messages() %}
+{% for each in msgs %}
+{% if success %}
+<div class="alert alert-success" role="alert">
+  {% else %}
+  <div class="alert alert-danger" role="alert">
+    {% endif %}
+    
+    {{each}}
+  </div><br>
+  
+  
   {% endfor %}
 
   <form action ="/loginAuth" method="POST" >

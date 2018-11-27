@@ -46,4 +46,4 @@ def signupAuthentication():
         #version of his password to database
         db.add_user(username_input, md5_crypt.encrypt(password_input))
         flash("Successfully Registered, Now Sign In!")
-        return redirect(url_for('login'))
+        return render_template('login.html', success=True)

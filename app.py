@@ -18,7 +18,7 @@ def index():
 def login():
     if (accounts.is_logged_in()):
         return redirect(url_for('index'))
-    return render_template('login.html')
+    return render_template('login.html', success=False)
 
 @app.route("/loginAuth" , methods = ["POST"])
 def loginAuthenticate():

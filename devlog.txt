@@ -60,4 +60,6 @@ when there are errors.
 for database deletion and recreation.
 3. Added a script to utils for facilitating communication with 
 the database.
+4. Added navbar with login/signup buttons to facilitate website
+traversal.
 ==============================================================

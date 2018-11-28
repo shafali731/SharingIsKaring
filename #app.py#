@@ -54,8 +54,8 @@ def logout():
 def book(bookID):
     return render_template('book_info.html')
 
-@app.route('/movie_info/<title>')
-def movie(title):
+@app.route('/movie_info/<int:movieID>')
+def movie(movieID):
     return render_template('movie_info.html')
 
 # for testing purposes

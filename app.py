@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, request, render_template, session, redirect, flash, url_for
 
-from util import dbcommands as db, accounts, movies
+from util import dbcommands as db, accounts, movies, books
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
@@ -49,7 +49,6 @@ def logout():
         return redirect(url_for("index"))
     return redirect(url_for('index'))
 
-
 @app.route('/book_info/<int:bookID>')
 def book(bookID):
     return render_template('book_info.html')
@@ -59,11 +58,36 @@ def movie(movieID):
     dict = movies.movie_dict("&i=", movieID)
     return render_template('movie_info.html', **dict, movieID=dict.get('imdbID'))
 
+@app.route('/search', methods=["GET"])
+def search():
+    type = request.args.get("type")
+    query =request.args.get("query").replace(" " , "+")
+    if(query==""):
+        return redirect(url_for('index'))
+    if(type == "Books"):
+        return redirect(url_for('book_search', query=query))
+    else:
+        return redirect(url_for('movie_search', query=query))
+
+@app.route('/book_search/<query>')
+def book_search(query):
+    if(query==""):
+        return redirect(url_for('index'))
+    data = books.google_books_data(query)
+    if(accounts.is_logged_in()):
+        return render_template('book_search.html', dict=data["items"] , query=query, loggedIn=True, user=db.get_username(session["id"]))
+    else:
+        return render_template('book_search.html', dict=data["items"] , query=query, loggedIn=False)
+
 @app.route('/movie_search/<query>')
 def movie_search(query):
+    if(query==""):
+        return redirect(url_for('index'))
     list = movies.movie_dict("&s=", query).get("Search");
-    return render_template('movie_search.html', list=list)
-
+    if(accounts.is_logged_in()):
+        return render_template('movie_search.html', query=query, list=list , loggedIn=True, user=db.get_username(session["id"]))
+    else:
+        return render_template('movie_search.html', query=query, list=list, loggedIn=False)
 
 if __name__ == '__main__':
     app.debug = True  # Set to `False` before release

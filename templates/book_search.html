@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block title %}
+Books
+{% endblock %}
+
+{% block content %}
+  {% for book in dict%}
+   <div class="container-fluid" style="margin-left: 80px;">
+     <div class="row" >
+       <div class="col-md-1" >
+         {% if "imageLinks" in book["volumeInfo"] %}
+         <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }} width="80" height="160" />
+         {% else %}
+         <img src="../static/genericcover.jpg" width="80" height="160" />
+         {% endif %}
+       </div>
+       <div class="col-md-8" >
+        <div class="row" style="background-color:yellow;">
+          {{book["volumeInfo"]["title"]}}
+        </div>
+        <div class="row">
+          {% if "authors" in book["volumeInfo"] %}
+            By:
+            {%for author in book["volumeInfo"]["authors"]%}
+              {{author}}
+            {% endfor %}
+          {% endif %}
+        </div>
+        <br>
+        <div class="row">
+          {% if "description" in book["volumeInfo"] %}
+          <b>Description</b>: {{book["volumeInfo"]["description"][0:300]}}...
+          {% endif %}
+        </div>
+       </div>
+       <div class="col-md-3">
+          <br><br><br>
+          <div class="row">
+            <button type="button" class="btn btn-primary">Add to Read</button>
+          </div>
+          <br>
+          <div class="row">
+            <button type="button" class="btn btn-warning">Add to Wishlist</button>
+          </div>
+       </div>
+     </div>
+   </div><br><br>
+  {% endfor %}
+{% endblock %}

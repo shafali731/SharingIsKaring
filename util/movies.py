@@ -19,6 +19,9 @@ def movie_dict(parameter, value):
     print("-------------------------\n")
     dict = json.loads(info)
     return dict;
-        
 
-
+def better_movie_list(old_list):
+    list = []
+    for movie in old_list:
+        list.append(movie_dict("&i=", movie.get("imdbID")))
+    return list

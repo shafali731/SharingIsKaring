@@ -7,8 +7,19 @@ Movies
 {% block content %}
 <h1> Search Results </h1>
 {% for movie in list %}
+<div class="container-fluid" style="margin-left: 80px;">
+  <div class="row" >
+    <div class="col-md-1" >
+      <img src={{movie.Poster }} width="100" height="160" />
+    </div>    
+    <div class="col-md-8" >
+      <div class="row" style="background-color:yellow;">
+	{{movie.Title}}
+      </div>
+    </div>
+  </div>
+</div>
 <hr>
-<h2> Title: {{movie.Title}}</h2>
 {% endfor %}
 
 {% endblock %}

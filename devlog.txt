@@ -97,3 +97,10 @@ while still logged in.
 5. Added dummy buttons in book_search.html for future use of
 adding books to wishlist or read list.
 ==============================================================
+
+karenL -- 2018-11-28 13:20
+--------------------------------------------------------------
+1. Used imdb of movies from search to create a more informative
+list of dictionaries for movie search page.
+2. Movie search result displays simple movie information.
+==============================================================

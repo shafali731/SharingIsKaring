@@ -41,19 +41,19 @@ that render their respective templates.
 3. Generated OMDb API key to use.
 ==============================================================
 
-ShafaliG -- 2018-11-26 13:10
+shafaliG -- 2018-11-26 13:10
 --------------------------------------------------------------
 1. Updated README to include roster and explanation of project.
 2. Included what APIs we are using for the project in design doc. 
 3. Fixed the component map.
 ==============================================================
 
-JabirC -- 2018-11-26 22:10
+jabirC -- 2018-11-26 22:10
 --------------------------------------------------------------
 1. Updated database schema by removing confusing lines.
 ==============================================================
 
-JabirC -- 2018-11-26 23:29
+jabirC -- 2018-11-26 23:29
 --------------------------------------------------------------
 1. Added login and signup functionality with flash messages
 when there are errors.
@@ -63,4 +63,24 @@ for database deletion and recreation.
 the database.
 4. Added navbar with login/signup buttons to facilitate website
 traversal.
+==============================================================
+
+karenL -- 2018-11-27 13:20
+--------------------------------------------------------------
+1. Fixed login alert.
+==============================================================
+
+karenL -- 2018-11-28 13:15
+--------------------------------------------------------------
+1. Added dummy movie data for /movie_info route.
+2. Updated movie_info template.
+==============================================================
+
+karenL -- 2018-11-28 23:31
+--------------------------------------------------------------
+1. Added movie_search route that displays search results for
+a movie.
+2. Added a .gitignore in data so databases will not be pushed.
+3. Movie info route displays movie information based on the
+imdbID.
 ==============================================================

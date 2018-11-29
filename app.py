@@ -54,14 +54,15 @@ def logout():
 def book(bookID):
     return render_template('book_info.html')
 
-@app.route('/movie_info/<title>')
-def movie(title):
-    return render_template('movie_info.html')
+@app.route('/movie_info/<movieID>')
+def movie(movieID):
+    dict = movies.movie_dict("&i=", movieID)
+    return render_template('movie_info.html', **dict, movieID=dict.get('imdbID'))
 
-# for testing purposes
-@app.route('/movie_info')
-def movie_test():
-    return render_template('movie_info.html', **movies.movie_dict())
+@app.route('/movie_search/<query>')
+def movie_search(query):
+    list = movies.movie_dict("&s=", query).get("Search");
+    return render_template('movie_search.html', list=list)
 
 
 if __name__ == '__main__':

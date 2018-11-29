@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+Movies
+{% endblock %}
+
+{% block content %}
+<h1> Search Results </h1>
+{% for movie in list %}
+<hr>
+<h2> Title: {{movie.Title}}</h2>
+{% endfor %}
+
+{% endblock %}

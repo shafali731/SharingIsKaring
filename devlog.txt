@@ -84,3 +84,16 @@ a movie.
 3. Movie info route displays movie information based on the
 imdbID.
 ==============================================================
+
+JabirC -- 2018-11-29 03:16
+--------------------------------------------------------------
+1. Added Googlebooks Api.
+2. Updated book_search.html to show various information about 
+searched books.
+3. Updated search bar in the navigation bar to support searching
+for both books and movies.
+4. Fixed bug where navbar showed user as being logged out
+while still logged in.
+5. Added dummy buttons in book_search.html for future use of
+adding books to wishlist or read list.
+==============================================================

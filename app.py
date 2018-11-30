@@ -55,7 +55,7 @@ def book(bookID):
 
 @app.route('/movie_info/<movieID>')
 def movie(movieID):
-    dict = movies.movie_dict("&i=", movieID)
+    dict = movies.movie_info("&i=", movieID)
     return render_template('movie_info.html', **dict, movieID=dict.get('imdbID'))
 
 @app.route('/search', methods=["GET"])
@@ -83,7 +83,7 @@ def book_search(query):
 def movie_search(query):
     if(query==""):
         return redirect(url_for('index'))
-    list = movies.better_movie_list(movies.movie_dict("&s=", query).get("Search"))
+    list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
     
     if(accounts.is_logged_in()):
         return render_template('movie_search.html', query=query, list=list , loggedIn=True, user=db.get_username(session["id"]))

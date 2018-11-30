@@ -104,6 +104,12 @@ karenL -- 2018-11-28 13:20
 list of dictionaries for movie search page.
 2. Movie search result displays simple movie information (poster,
 title, summary).
-3. Added dummy buttons in movie_search for future use of adding
+==============================================================
+
+karenL -- 2018-11-28 22:12
+--------------------------------------------------------------
+1. Added dummy buttons in movie_search for future use of adding
 movies to watch list or watched list.
+2. Movie poster and title in search result links to individual
+movie_info page.
 ==============================================================

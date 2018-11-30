@@ -5,13 +5,34 @@ Movies
 {% endblock %}
 
 {% block content %}
-<h2>Title: {{Title}}</h2>
-<h2>Released: {{Released}}</h2>
-<h2>Rated: {{Rated}}</h2>
-<h2>Runtime: {{Runtime}}</h2>
-<h2>Genre: {{Genre}}</h2>
-<h2>Director: {{Director}}</h2>
-<h2>Writer: {{Writer}}</h2>
-<h2>Actors: {{Actors}}</h2>
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-md-2" >
+      <img src={{Poster}} width="100%" height="100%" />
+    </div>    
+    <div class="col-md-8" >
+      <div class="row" style="background-color:yellow;">
+	{{Title}}
+      </div>
+      <div class="row">
+	Rated: {{Rated}}
+      </div>
+      <br>
+      <div class="row">
+	<b>Plot: </b>{{Plot}}
+      </div>
+    </div>
+    <div class="col-md-2">
+      <br><br><br>
+      <div class="row">
+        <button type="button" class="btn btn-primary">Mark as watched</button>
+      </div>
+      <br>
+      <div class="row">
+        <button type="button" class="btn btn-warning">Add to watchlist</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

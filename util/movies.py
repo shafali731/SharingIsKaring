@@ -2,7 +2,7 @@ import urllib.request, json
 
 #OMDb apikey=1891fe35
 
-def movie_dict(parameter, value):
+def movie_info(parameter, value):
     url_stub = "http://www.omdbapi.com/?"
     api_key = "apikey=1891fe35"
     search = parameter + value
@@ -17,11 +17,13 @@ def movie_dict(parameter, value):
     print("-------------------------\n")
     print(info)
     print("-------------------------\n")
-    dict = json.loads(info)
-    return dict;
+    data = json.loads(info)
+    return data;
 
 def better_movie_list(old_list):
     list = []
     for movie in old_list:
-        list.append(movie_dict("&i=", movie.get("imdbID")))
+        dict = movie_info("&i=", movie.get("imdbID"))
+        dict["site_link"] = "/movie_info/" + movie.get("imdbID")
+        list.append(dict)
     return list

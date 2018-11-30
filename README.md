@@ -1,4 +1,4 @@
-## SharingIsKaring
+# SharingIsKaring
 ## Shafali Gupta, Karen Li, Jabir Chowdhury 
 
 This project curates a recommended list of books and movies based on genres and other items that the user has previously 

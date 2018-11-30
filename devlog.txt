@@ -102,5 +102,8 @@ karenL -- 2018-11-28 13:20
 --------------------------------------------------------------
 1. Used imdb of movies from search to create a more informative
 list of dictionaries for movie search page.
-2. Movie search result displays simple movie information.
+2. Movie search result displays simple movie information (poster,
+title, summary).
+3. Added dummy buttons in movie_search for future use of adding
+movies to watch list or watched list.
 ==============================================================

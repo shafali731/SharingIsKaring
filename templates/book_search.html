@@ -6,13 +6,13 @@ Books
 
 {% block content %}
   {% for book in dict%}
-   <div class="container-fluid" style="margin-left: 80px;">
+   <div class="container-fluid">
      <div class="row" >
-       <div class="col-md-1" >
+       <div class="col-md-2">
          {% if "imageLinks" in book["volumeInfo"] %}
-         <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }} width="80" height="160" />
+         <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }} width="100%" height="100%" />
          {% else %}
-         <img src="../static/genericcover.jpg" width="80" height="160" />
+         <img src="../static/genericcover.jpg" width="100%" height="100%" />
          {% endif %}
        </div>
        <div class="col-md-8" >

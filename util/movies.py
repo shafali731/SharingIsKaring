@@ -4,7 +4,9 @@ import urllib.request, json
 #tastedive 324992-SoftdevP-U4MUASLY
 
 def remove_nonascii(text):
-    return ''.join(i for i in text if ord(i)<128)
+    text = ''.join(i for i in text if ord(i)<128)
+    text = ''.join(i for i in text if i=="%")
+    return text
 
 def movie_info(parameter, value):
     url_stub = "http://www.omdbapi.com/?"

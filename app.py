@@ -97,13 +97,16 @@ def book_search(query):
 
 @app.route('/movie_search/<query>')
 def movie_search(query):
+    print("inside movie search")
+    print(query)
     if(query==""):
         return redirect(url_for('index'))
     list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
 
     if(accounts.is_logged_in()):
         return render_template('movie_search.html',
-                               query=query, list=list ,
+                               query=query,
+                               list=list,
                                loggedIn=True,
                                user=db.get_username(session["id"]))
     else:

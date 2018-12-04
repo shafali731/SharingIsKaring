@@ -137,3 +137,12 @@ recommended movies from tastedive and OMDb information.
 2. Added recommendations section to movie info page (and then
 the API broke).
 ==============================================================
+
+karenL -- 2018-12-04 09:18
+--------------------------------------------------------------
+1. Made recommendations section of movie info page more
+informative.
+2. Movie search no longer breaks if movie is not in API data.
+3. Identified bug where code breaks if you enter search
+parameters such as %.
+==============================================================

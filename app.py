@@ -89,7 +89,10 @@ def movie_search(query):
     list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
     
     if(accounts.is_logged_in()):
-        return render_template('movie_search.html', query=query, list=list , loggedIn=True, user=db.get_username(session["id"]))
+        return render_template('movie_search.html',
+                               query=query, list=list ,
+                               loggedIn=True,
+                               user=db.get_username(session["id"]))
     else:
         return render_template('movie_search.html', query=query, list=list, loggedIn=False)
 

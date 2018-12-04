@@ -47,7 +47,7 @@ def movie_rec(movie_name):
 
     req = urllib.request.Request(url, headers=hdr)
     url_object = urllib.request.urlopen(req)
-    
+
     print("-------------------------\n")
     print(url)
     print("-------------------------\n")
@@ -67,5 +67,4 @@ def movie_rec(movie_name):
                 dict["site_link"] = "/movie_info/" + dict.get("imdbID")
                 list.append(dict)
     return list
-
 

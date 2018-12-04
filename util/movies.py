@@ -40,7 +40,7 @@ def movie_rec(movie_name):
 
     req = urllib.request.Request(url, headers=hdr)
     url_object = urllib.request.urlopen(req)
-    
+
     print("-------------------------\n")
     print(url)
     print("-------------------------\n")
@@ -58,4 +58,4 @@ def movie_rec(movie_name):
         list.append(dict)
     return list
 
-movie_rec("totoro")
+# movie_rec("totoro")

@@ -56,7 +56,10 @@ def book(bookID):
 @app.route('/movie_info/<movieID>')
 def movie(movieID):
     dict = movies.movie_info("&i=", movieID)
-    return render_template('movie_info.html', **dict, movieID=dict.get('imdbID'))
+    return render_template('movie_info.html',
+                           **dict,
+                           movieID=dict.get('imdbID'),
+                           rec_list = movies.movie_rec(dict["Title"].replace(" " , "+")))
 
 @app.route('/search', methods=["GET"])
 def search():

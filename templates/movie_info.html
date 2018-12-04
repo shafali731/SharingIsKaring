@@ -14,12 +14,36 @@ Movies
       <div class="row" style="background-color:yellow;">
 	{{Title}}
       </div>
+      <br>
       <div class="row">
-	Rated: {{Rated}}
+	<b>Rated: </b>{{Rated}}
+      </div>
+      <div class="row">
+	<b>Runtime: </b>{{Runtime}}
+      </div>
+      <div class="row">
+	<b>Genre: </b>{{Genre}}
+      </div>
+      <br>
+      <div class="row">
+	<b>Writer: </b>{{Writer}}
+      </div>
+      <div class="row">
+	<b>Actors: </b>{{Actors}}
       </div>
       <br>
       <div class="row">
 	<b>Plot: </b>{{Plot}}
+      </div>
+      <br>
+      <div class="row">
+	<b>Metascore: </b>{{Metascore}}
+      </div>
+      <div class="row">
+	<b>imdbRating: </b>{{imdbRating}}
+      </div>
+      <div class="row">
+	<b>imdbVotes: </b>{{imdbVotes}}
       </div>
     </div>
     <div class="col-md-2">
@@ -33,6 +57,17 @@ Movies
       </div>
     </div>
   </div>
+</div>
+
+<hr>
+
+<div class="container-fluid">
+  <h2 class="text-center"> Similar Movies </h2>
+  {% for movie in rec_list %}
+  <div class="row">
+    {{movie["Title"]}}
+  </div>
+  {% endfor %}
 </div>
 
 {% endblock %}

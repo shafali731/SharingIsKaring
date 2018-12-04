@@ -113,3 +113,27 @@ movies to watch list or watched list.
 2. Movie poster and title in search result links to individual
 movie_info page.
 ==============================================================
+
+karenL -- 2018-11-29 13:19
+--------------------------------------------------------------
+1. Added rating and fixed poster sizing of movie search.
+2. Started templates for user's movie lists.
+3. Created requirements.txt.
+4. Updated README.md.
+==============================================================
+
+jabirC & karenL -- 2018-12-03 13:21
+--------------------------------------------------------------
+1. Generated API key for tastedive API for movie and book
+recommendations.
+2. Experimented with tastedive and use of headers.
+==============================================================
+
+karenL -- 2018-12-04 00:22
+--------------------------------------------------------------
+1. Got tastedive to work with headers.
+2. Generated a dictionary of recommended movies using
+recommended movies from tastedive and OMDb information. 
+2. Added recommendations section to movie info page (and then
+the API broke).
+==============================================================

@@ -11,19 +11,19 @@ Movies
   <div class="row" >
     <div class="col-md-2" >
       <a href={{movie.site_link}}>
-	<img src={{movie.Poster }} width="100%" height="100%" />
+	<img src={{movie["Poster"] }} width="100%" height="100%" />
       </a>
     </div>    
     <div class="col-md-8" >
       <div class="row" style="background-color:yellow;">
-	<a href={{movie.site_link}}>{{movie.Title}} </a>
+	<a href={{movie["site_link"]}}>{{movie.Title}} </a>
       </div>
       <div class="row">
-	Rated: {{movie.Rated}}
+	Rated: {{movie["Rated"]}}
       </div>
       <br>
       <div class="row">
-	<b>Plot: </b>{{movie.Plot}}
+	<b>Plot: </b>{{movie["Plot"]}}
       </div>
     </div>
     <div class="col-md-2">

@@ -28,3 +28,34 @@ def better_movie_list(old_list):
         dict["site_link"] = "/movie_info/" + movie.get("imdbID")
         list.append(dict)
     return list
+
+def movie_rec(movie_name):
+    url_stub = "https://tastedive.com/api/similar?"
+    api_key = "k=324992-SoftdevP-U4MUASLY"
+    parameter = "&q=movie:"
+    search = parameter + movie_name
+    url = url_stub + api_key + search
+
+    hdr = { 'User-Agent' : 'Mozilla/5.0' }
+
+    req = urllib.request.Request(url, headers=hdr)
+    url_object = urllib.request.urlopen(req)
+    
+    print("-------------------------\n")
+    print(url)
+    print("-------------------------\n")
+    print(url_object)
+    print("-------------------------\n")
+    info = url_object.read()
+    print("-------------------------\n")
+    print(info)
+    print("-------------------------\n")
+    data = json.loads(info)
+    list = []
+    for movie in data["Similar"]["Results"]:
+        dict = movie_info("&t=", movie_name)
+        dict["site_link"] = "/movie_info/" + movie.get("imdbID")
+        list.append(dict)
+    return list
+
+movie_rec("totoro")

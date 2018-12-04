@@ -137,3 +137,11 @@ recommended movies from tastedive and OMDb information.
 2. Added recommendations section to movie info page (and then
 the API broke).
 ==============================================================
+
+jabirC -- 2018-12-04 03:40
+--------------------------------------------------------------
+1. Added content to book_info.html
+2. Implemented a filter for book_search so that books with
+little to know data don't show
+3. Added the login/logout features to book_info and movie_info
+==============================================================

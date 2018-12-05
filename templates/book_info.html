@@ -64,19 +64,52 @@ Books
         <div class="col-md-2">
           <br><br><br>
           {% if loggedIn %}
-            <div class="row">
-              <form action ="/alreadyRead" method="GET">
-              <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
-              <button type="submit" class="btn btn-primary">Mark as read</button>
-              </form>
-            </div>
-            <br>
-            <div class="row">
-              <form action ="/wishToRead" method="GET">
-              <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
-              <button type="submit" class="btn btn-warning">Add to wishlist</button>
-              </form>
-            </div>
+              {% if (not in_read) and (not in_wish) %}
+                <div class="row">
+                  <form action ="/alreadyRead" method="GET">
+                  <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                  <button type="submit" class="btn btn-primary">Mark as read</button>
+                  </form>
+                </div>
+                <br>
+                <div class="row">
+                  <form action ="/wishToRead" method="GET">
+                  <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                  <button type="submit" class="btn btn-warning">Add to wishlist</button>
+                  </form>
+                </div>
+              {% endif %}
+              {% if (in_read) and (not in_wish) %}
+                <div class="row">
+                  <form action ="/removeReadBook" method="GET">
+                    <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                    <button type="submit" class="btn btn-danger" >Remove from read</button>
+                 </form>
+                </div>
+                <br>
+                <div class="row">
+                  <form action ="/wishToRead" method="GET">
+                  <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                  <button type="submit" class="btn btn-warning" disabled>Add to wishlist</button>
+                  </form>
+                </div>
+                <br>
+              {% endif %}
+              {% if (in_wish) and (not in_read) %}
+                <div class="row">
+                  <form action ="/alreadyRead" method="GET">
+                  <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                  <button type="submit" class="btn btn-primary" disabled>Mark as read</button>
+                  </form>
+                </div>
+                <br>
+                <div class="row">
+                  <form action ="/removeWishBook" method="GET">
+                    <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+                    <button type="submit" class="btn btn-danger" >Remove from wishlist</button>
+                  </form>
+                </div>
+              {% endif %}
           {% else %}
           <div class="row">
             <form action ="/login" method="GET">

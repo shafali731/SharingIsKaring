@@ -52,19 +52,52 @@ Movies
     <div class="col-md-2">
       <br><br><br>
       {% if loggedIn %}
-        <div class="row">
-          <form action ="/alreadyWatched" method="GET">
-          <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
-          <button type="button" class="btn btn-primary">Mark as watched</button>
-          </form>
-        </div>
-        <br>
-        <div class="row">
-          <form action ="/wishToWatch" method="GET">
-          <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
-          <button type="button" class="btn btn-warning">Add to watchlist</button>
-          </form>
-        </div>
+        {% if (not in_watched) and (not in_wish) %}
+            <div class="row">
+              <form action ="/alreadyWatched" method="GET">
+              <input type="hidden" name="ID" value={{movieID}}>
+              <button type="submit" class="btn btn-primary">Mark as watched</button>
+              </form>
+            </div>
+            <br>
+            <div class="row">
+              <form action ="/wishToWatch" method="GET">
+              <input type="hidden" name="ID" value={{movieID}}>
+              <button type="submit" class="btn btn-warning">Add to watchlist</button>
+              </form>
+            </div>
+        {% endif %}
+        {% if (in_watched) and (not in_wish) %}
+            <div class="row">
+             <form action ="/removeWatchedMovie" method="GET">
+                <input type="hidden" name="ID" value={{movieID}}>
+                <button type="submit" class="btn btn-danger" >Remove from watched</button>
+             </form>
+            </div>
+            <br>
+            <div class="row">
+              <form action ="/wishToWatch" method="GET">
+              <input type="hidden" name="ID" value={{movieID}}>
+              <button type="submit" class="btn btn-warning" disabled>Add to wishlist</button>
+              </form>
+            </div>
+            <br>
+        {% endif %}
+        {% if (in_wish) and (not in_watched) %}
+            <div class="row">
+              <form action ="/alreadyWatched" method="GET">
+              <input type="hidden" name="ID" value={{movieID}}>
+              <button type="submit" class="btn btn-primary" disabled>Mark as watched</button>
+              </form>
+            </div>
+            <br>
+            <div class="row">
+              <form action ="/removeWishMovie" method="GET">
+                <input type="hidden" name="ID" value={{movieID}}>
+                <button type="submit" class="btn btn-danger" >Remove from wishlist</button>
+              </form>
+            </div>
+        {% endif %}
       {% else %}
       <div class="row">
         <form action ="/login" method="GET">

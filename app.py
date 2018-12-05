@@ -54,7 +54,11 @@ def book(bookID):
     data = books.google_books_data(bookID)
     # print(data)
     if(accounts.is_logged_in()):
-        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]))
+        alreadyRead = db.get_books_read(session["id"])
+        read = bookID in alreadyRead
+        wishToRead = db.get_books_wishlist(session["id"])
+        wish = bookID in wishToRead
+        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]), in_read = read, in_wish = wish)
     else:
         return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID, loggedIn=False)
 
@@ -64,11 +68,18 @@ def movie(movieID):
     recs = rec_list = movies.movie_rec(dict["Title"].replace(" " , "+"))
     print(recs)
     if(accounts.is_logged_in()):
+        alreadyWatched = db.get_movies_watched(session["id"])
+        watched = movieID in alreadyWatched
+        wishToWatch = db.get_movies_wishlist(session["id"])
+        wish = movieID in wishToWatch
         return render_template('movie_info.html',
                            **dict,
                            movieID=dict.get('imdbID'),
                            rec_list = recs,
-                           loggedIn=True, user=db.get_username(session["id"]))
+                           loggedIn=True, user=db.get_username(session["id"]),
+                           in_watched = watched,
+                           in_wish = wish
+                           )
     else:
         return render_template('movie_info.html',
                            **dict,
@@ -118,25 +129,51 @@ def movie_search(query):
 def render_read():
     id = request.args.get("ID")
     db.add_read(session["id"] ,id)
-    return redirect(url_for('index'))
+    return redirect(url_for('book' , bookID = id))
 
 @app.route("/wishToRead" , methods=["GET"])
 def render_read_wishlist():
     id = request.args.get("ID")
     db.add_wishlist_book(session["id"] ,id)
-    return redirect(url_for('index'))
+    return redirect(url_for('book' , bookID = id))
 
 @app.route("/alreadyWatched" , methods=["GET"])
 def render_watched():
     id = request.args.get("ID")
     db.add_watched(session["id"] ,id)
-    return redirect(url_for('index'))
+    return redirect(url_for('movie' , movieID = id))
 
 @app.route("/wishToWatch" , methods=["GET"])
 def render_watch_wishlist():
     id = request.args.get("ID")
     db.add_wishlist_movie(session["id"] ,id)
-    return redirect(url_for('index'))
+    return redirect(url_for('movie' , movieID = id))
+
+@app.route("/removeReadBook" , methods=["GET"])
+def remove_book_readOrwatched():
+    id = request.args.get("ID")
+    db.remove_book_read(session["id"], id)
+    return redirect(url_for('book' , bookID = id))
+
+@app.route("/removeWishBook" , methods=["GET"])
+def remove_book_wishlist():
+    id = request.args.get("ID")
+    print(id)
+    db.remove_book_wish(session["id"], id)
+    return redirect(url_for('book' , bookID = id))
+
+@app.route("/removeWatchedMovie" , methods=["GET"])
+def remove_movie_readOrwatched():
+    id = request.args.get("ID")
+    db.remove_movie_watched(session["id"], id)
+    return redirect(url_for('movie' , movieID = id))
+
+@app.route("/removeWishMovie" , methods=["GET"])
+def remove_movie_wishlist():
+    id = request.args.get("ID")
+    db.remove_movie_wish(session["id"], id)
+    return redirect(url_for('movie' , movieID = id))
+
 
 if __name__ == '__main__':
     app.debug = True  # Set to `False` before release

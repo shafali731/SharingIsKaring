@@ -73,7 +73,7 @@ def get_movies_watched(userID):
     # print(books)
     db.close()
     list = []
-    for id in movie:
+    for id in movies:
         list.append(id[0])
     # print(list)
     return list
@@ -107,6 +107,43 @@ def get_movies_wishlist(userID):
         list.append(id[0])
     # print(list)
     return list
+
+def remove_book_read(userID, ID):
+    '''remove books from readORwatched based on userID and ID'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM readORwatched WHERE userID = ? AND ID = ? AND type = ?;"
+    c.execute(command,(userID, ID, "book"))
+    db.commit()
+    db.close()
+
+def remove_movie_watched(userID, ID):
+    '''remove movies from readORwatched based on userID and ID'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM readORwatched WHERE userID = ? AND ID = ? AND type = ?;"
+    c.execute(command,(userID, ID, "movie"))
+    db.commit()
+    db.close()
+
+def remove_book_wish(userID, ID):
+    '''remove books from wishlist based on userID and ID'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM wishlist WHERE userID = ? AND ID = ? AND type = ?;"
+    print(command)
+    c.execute(command,(userID, ID, "book"))
+    db.commit()
+    db.close()
+
+def remove_movie_wish(userID, ID):
+    '''remove movie from wishlist based on userID and ID'''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "DELETE FROM wishlist WHERE userID = ? AND ID = ? AND type = ?;"
+    c.execute(command,(userID, ID, "movie"))
+    db.commit()
+    db.close()
 
 def get_all_user_data():
     '''gets all user data into a dict'''

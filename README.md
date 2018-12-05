@@ -1,18 +1,13 @@
 # SharingIsKaring
-## Shafali Gupta, Karen Li, Jabir Chowdhury 
+## Shafali Gupta, Karen Li, Jabir Chowdhury
 
-This project curates a recommended list of books and movies based on genres and other items that the user has previously 
-liked. It also provides a database with books and movies that gives information about the items and separates them through categories based on genre.
+## SharingIsKaring?
+SharingIsKaring is a website where you can find information on any movie or book you would like, and then get a series of recommendations
+based on what you searched.
 
-## Prerequisites
+## How do you run this?
 
-Install packages:
-```
-(venv)$pip install -r <path-to-file>requirements.txt
-```
-
-## Run
-### Activate virtual environment
+### First you need to activate your virtual environment
 Go to the folder containing your virtual environment.
 
 Linux and Mac:
@@ -23,6 +18,10 @@ $source my_folder/bin/activate
 Windows:
 ```
 > \path\to\env\Scripts\activate
+```
+### Install packages
+```
+(venv)$pip install -r <path-to-file>requirements.txt
 ```
 
 ### Clone the repository

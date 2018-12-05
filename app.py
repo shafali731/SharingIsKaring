@@ -52,26 +52,28 @@ def logout():
 @app.route('/book_info/<bookID>')
 def book(bookID):
     data = books.google_books_data(bookID)
-    print(data)
+    # print(data)
     if(accounts.is_logged_in()):
-        return render_template('book_info.html', dict=data, bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]))
+        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]))
     else:
-        return render_template('book_info.html', dict=data, bookID=bookID, loggedIn=False)
+        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID, loggedIn=False)
 
 @app.route('/movie_info/<movieID>')
 def movie(movieID):
     dict = movies.movie_info("&i=", movieID)
+    recs = rec_list = movies.movie_rec(dict["Title"].replace(" " , "+"))
+    print(recs)
     if(accounts.is_logged_in()):
         return render_template('movie_info.html',
                            **dict,
                            movieID=dict.get('imdbID'),
-                           rec_list = movies.movie_rec(dict["Title"].replace(" " , "+")),
+                           rec_list = recs,
                            loggedIn=True, user=db.get_username(session["id"]))
     else:
         return render_template('movie_info.html',
                            **dict,
                            movieID=dict.get('imdbID'),
-                           rec_list = movies.movie_rec(dict["Title"].replace(" " , "+")),
+                           rec_list = recs,
                            loggedIn=False)
 
 @app.route('/search', methods=["GET"])

@@ -5,4 +5,4 @@
 !.gitignore
 
 # Except folders
-!*/
+!API_KEYS/

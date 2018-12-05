@@ -154,3 +154,10 @@ jabirC -- 2018-12-04 03:40
 little to know data don't show
 3. Added the login/logout features to book_info and movie_info
 ==============================================================
+
+jabirC -- 2018-12-05 00:05
+--------------------------------------------------------------
+1. Added book recommendations to book info pages
+2. Added several try-except statements for http url request 
+errors.
+==============================================================

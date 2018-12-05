@@ -51,13 +51,32 @@ Movies
     </div>
     <div class="col-md-2">
       <br><br><br>
+      {% if loggedIn %}
+        <div class="row">
+          <form action ="/alreadyWatched" method="GET">
+          <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+          <button type="button" class="btn btn-primary">Mark as watched</button>
+          </form>
+        </div>
+        <br>
+        <div class="row">
+          <form action ="/wishToWatch" method="GET">
+          <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+          <button type="button" class="btn btn-warning">Add to watchlist</button>
+          </form>
+        </div>
+      {% else %}
       <div class="row">
-        <button type="button" class="btn btn-primary">Mark as watched</button>
+        <form action ="/login" method="GET">
+        <button type="submit" class="btn btn-primary">Mark as read</button>
+        </form>
       </div>
       <br>
       <div class="row">
-        <button type="button" class="btn btn-warning">Add to watchlist</button>
-      </div>
+        <form action ="/login" method="GET">
+        <button type="submit" class="btn btn-warning">Add to wishlist</button>
+        </form>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -65,7 +84,9 @@ Movies
 <hr>
 
 <div class="container-fluid">
+  {% if rec_list|length > 0 %}
   <h2 class="text-center"> Similar Movies </h2>
+  {% endif %}
   {% for movie in rec_list %}
   <div class="container-fluid">
     <div class="row" >
@@ -86,7 +107,7 @@ Movies
 	  <b>Plot: </b>{{movie["Plot"]}}
 	</div>
       </div>
-      <div class="col-md-2">
+      <!-- <div class="col-md-2">
 	<br><br>
 	<div class="row">
           <button type="button" class="btn btn-primary">Mark as watched</button>
@@ -95,7 +116,7 @@ Movies
 	<div class="row">
           <button type="button" class="btn btn-warning">Add to watchlist</button>
 	</div>
-      </div>
+      </div> -->
     </div>
   </div><br><br>
   {% endfor %}

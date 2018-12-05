@@ -114,6 +114,30 @@ def movie_search(query):
     else:
         return render_template('movie_search.html', query=query, list=list, loggedIn=False)
 
+@app.route("/alreadyRead" , methods=["GET"])
+def render_read():
+    id = request.args.get("ID")
+    db.add_read(session["id"] ,id)
+    return redirect(url_for('index'))
+
+@app.route("/wishToRead" , methods=["GET"])
+def render_read_wishlist():
+    id = request.args.get("ID")
+    db.add_wishlist_book(session["id"] ,id)
+    return redirect(url_for('index'))
+
+@app.route("/alreadyWatched" , methods=["GET"])
+def render_watched():
+    id = request.args.get("ID")
+    db.add_watched(session["id"] ,id)
+    return redirect(url_for('index'))
+
+@app.route("/wishToWatch" , methods=["GET"])
+def render_watch_wishlist():
+    id = request.args.get("ID")
+    db.add_wishlist_movie(session["id"] ,id)
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.debug = True  # Set to `False` before release
     app.run()

@@ -63,13 +63,32 @@ Books
 
         <div class="col-md-2">
           <br><br><br>
+          {% if loggedIn %}
+            <div class="row">
+              <form action ="/alreadyRead" method="GET">
+              <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+              <button type="submit" class="btn btn-primary">Mark as read</button>
+              </form>
+            </div>
+            <br>
+            <div class="row">
+              <form action ="/wishToRead" method="GET">
+              <input type="hidden" name="ID" value={{dict["items"][0]["id"]}}>
+              <button type="submit" class="btn btn-warning">Add to wishlist</button>
+              </form>
+            </div>
+          {% else %}
           <div class="row">
-            <button type="button" class="btn btn-primary">Mark as read</button>
+            <form action ="/login" method="GET">
+            <button type="submit" class="btn btn-primary">Mark as read</button>
+            </form>
           </div>
           <br>
           <div class="row">
-            <button type="button" class="btn btn-warning">Add to wishlist</button>
-          </div>
+            <form action ="/login" method="GET">
+            <button type="submit" class="btn btn-warning">Add to wishlist</button>
+            </form>
+          {% endif %}
         </div>
 
       </div>
@@ -121,7 +140,7 @@ Books
                 {% endif %}
               </div>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
               <br><br><br>
               <div class="row">
                 <button type="button" class="btn btn-primary">Mark as read</button>
@@ -130,7 +149,7 @@ Books
               <div class="row">
                 <button type="button" class="btn btn-warning">Add to wishlist</button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div><br><br>
          {% endif %}

@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+
+{% block title %}
+Movies
+{% endblock %}
+
+{% block content %}
+
+{% if list|length > 0 %}
+{% for movie in list %}
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-md-2" >
+      <a href={{movie.site_link}}>
+	<img src={{movie["Poster"] }} width="100%" height="100%" />
+      </a>
+    </div>
+    <div class="col-md-8" >
+      <div class="row" style="background-color:yellow;">
+	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
+      </div>
+      <div class="row">
+	Rated: {{movie["Rated"]}} &nbsp; Released: {{movie["Released"]}}
+      </div>
+      <br>
+      <div class="row">
+	<b>Plot: </b>{{movie["Plot"]}}
+      </div>
+    </div>
+    <!-- <div class="col-md-2">
+      <br><br><br>
+      <div class="row">
+        <button type="button" class="btn btn-primary">Mark as watched</button>
+      </div>
+      <br>
+      <div class="row">
+        <button type="button" class="btn btn-warning">Add to watchlist</button>
+      </div>
+    </div> -->
+  </div>
+</div>
+<hr>
+{% endfor %}
+{% else %}
+<div class="container-fluid">
+<h2> Sorry, No Results Found. </h2>
+</div>
+{% endif %}
+{% endblock %}

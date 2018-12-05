@@ -174,6 +174,11 @@ def remove_movie_wishlist():
     db.remove_movie_wish(session["id"], id)
     return redirect(url_for('movie' , movieID = id))
 
+@app.route('/my_movies')
+def my_movies():
+        return render_template('user_movies.html')
+
+
 
 if __name__ == '__main__':
     app.debug = True  # Set to `False` before release

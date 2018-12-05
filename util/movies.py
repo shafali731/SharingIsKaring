@@ -5,7 +5,7 @@ import urllib.request, json
 
 def remove_nonascii(text):
     text = ''.join(i for i in text if ord(i)<128)
-    text = text.replace(":", "")
+    text = text.replace("&", "")
     return text
 
 def movie_info(parameter, value):

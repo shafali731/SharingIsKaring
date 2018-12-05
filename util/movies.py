@@ -5,7 +5,7 @@ import urllib.request, json
 
 def remove_nonascii(text):
     text = ''.join(i for i in text if ord(i)<128)
-    #text = ''.join(i for i in text if i=="%")
+    text = text.replace(":", "")
     return text
 
 def movie_info(parameter, value):
@@ -65,7 +65,7 @@ def movie_rec(movie_name):
         print("-------------------------\n")
         data = json.loads(info)
         list = []
-        for movie in data["Similar"]["Results"][0:6]:
+        for movie in data["Similar"]["Results"]:
             if (movie.get("Type")=="movie"):
                 movie_title = remove_nonascii(movie.get("Name").replace(" ", "+"))
                 dict = movie_info("&t=", movie_title)

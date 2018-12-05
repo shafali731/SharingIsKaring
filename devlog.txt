@@ -44,7 +44,7 @@ that render their respective templates.
 shafaliG -- 2018-11-26 13:10
 --------------------------------------------------------------
 1. Updated README to include roster and explanation of project.
-2. Included what APIs we are using for the project in design doc. 
+2. Included what APIs we are using for the project in design doc.
 3. Fixed the component map.
 ==============================================================
 
@@ -59,7 +59,7 @@ jabirC -- 2018-11-26 23:29
 when there are errors.
 2. Created database as well as a makedatabase script to allow
 for database deletion and recreation.
-3. Added a script to utils for facilitating communication with 
+3. Added a script to utils for facilitating communication with
 the database.
 4. Added navbar with login/signup buttons to facilitate website
 traversal.
@@ -88,7 +88,7 @@ imdbID.
 JabirC -- 2018-11-29 03:16
 --------------------------------------------------------------
 1. Added Googlebooks Api.
-2. Updated book_search.html to show various information about 
+2. Updated book_search.html to show various information about
 searched books.
 3. Updated search bar in the navigation bar to support searching
 for both books and movies.
@@ -133,7 +133,7 @@ karenL -- 2018-12-04 00:22
 --------------------------------------------------------------
 1. Got tastedive to work with headers.
 2. Generated a dictionary of recommended movies using
-recommended movies from tastedive and OMDb information. 
+recommended movies from tastedive and OMDb information.
 2. Added recommendations section to movie info page (and then
 the API broke).
 ==============================================================
@@ -158,6 +158,14 @@ little to know data don't show
 jabirC -- 2018-12-05 00:05
 --------------------------------------------------------------
 1. Added book recommendations to book info pages
-2. Added several try-except statements for http url request 
+2. Added several try-except statements for http url request
 errors.
+==============================================================
+
+jabirC -- 2018-12-05 04:15
+--------------------------------------------------------------
+1. Added many functions in util/dbcommands to facilitate interaction
+with database
+2. Added functionality to buttons
+3. Implemented button pressing restrictions
 ==============================================================

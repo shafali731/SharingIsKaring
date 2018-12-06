@@ -6,7 +6,7 @@ from util import dbcommands as db, accounts, movies, books
 
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
-#OMDb apikey=1891fe35
+
 
 @app.route('/')
 def index():
@@ -174,9 +174,67 @@ def remove_movie_wishlist():
     db.remove_movie_wish(session["id"], id)
     return redirect(url_for('movie' , movieID = id))
 
-@app.route('/my_movies')
-def my_movies():
-        return render_template('user_movies.html')
+@app.route("/profile" , methods=["GET"])
+def read_list():
+    if(accounts.is_logged_in()):
+       read=db.get_books_read(session['id'])
+       data=[]
+       for id in read:
+           temp = books.google_books_data(id)
+           if "items" in temp:
+               data.append(temp["items"][0])
+           else:
+               continue
+       return render_template("user_books.html", data=data , title="Books Read", no_results="Looks Like You Haven't Read Any Books",
+                               loggedIn=True, user=db.get_username(session["id"]))
+    else:
+       return redirect(url_for('login'))
+
+@app.route("/bookwish" , methods=["GET"])
+def read_wishlist():
+    if(accounts.is_logged_in()):
+       read=db.get_books_wishlist(session['id'])
+       if read[0] == None:
+           read=[]
+       data=[]
+       for id in read:
+           temp = books.google_books_data(id)
+           if "items" in temp:
+               data.append(temp["items"][0])
+           else:
+               continue
+       return render_template("user_books.html", data=data , title="Want To Read", no_results="Looks Like You Don't Have Any Books Added",
+                               loggedIn=True, user=db.get_username(session["id"]))
+    else:
+       return redirect(url_for('login'))
+
+@app.route("/movieWatched" , methods=["GET"])
+def watch_list():
+    if(accounts.is_logged_in()):
+       watch=db.get_movies_watched(session['id'])
+       data=[]
+       for id in watch:
+           data.append(movies.movie_info("&i=" , id))
+       return render_template("user_movies.html", data=data , title="Movies Watched", no_results="Looks Like You Haven't Watched Any Movies",
+                               loggedIn=True, user=db.get_username(session["id"]))
+    else:
+       return redirect(url_for('login'))
+
+@app.route("/moviewish" , methods=["GET"])
+def watch_wishlist():
+    if(accounts.is_logged_in()):
+       watch=db.get_movies_wishlist(session['id'])
+       print(watch)
+       if watch[0] == None:
+           watch=watch[1:]
+       data=[]
+       for id in watch:
+           data.append(movies.movie_info("&i=" , id))
+       print(data)
+       return render_template("user_movies.html", data=data , title="Want To Watch", no_results="Looks Like You Don't Have Any Movies Added",
+                               loggedIn=True, user=db.get_username(session["id"]))
+    else:
+       return redirect(url_for('login'))
 
 
 

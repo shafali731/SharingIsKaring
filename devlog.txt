@@ -178,3 +178,10 @@ with database
 2. Added functionality to buttons
 3. Implemented button pressing restrictions
 ==============================================================
+
+jabirC -- 2018-12-06 02:39
+--------------------------------------------------------------
+1. Added profile page so users can view their lists
+2. Found an error where google books returns 403 when the
+request limit is exceeded
+==============================================================

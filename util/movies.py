@@ -9,12 +9,12 @@ def remove_nonascii(text):
     return text
 
 def movie_info(parameter, value):
-    url_stub = "http://www.omdbapi.com/?"
-    api_key = "apikey=1891fe35"
-    search = parameter + remove_nonascii(value)
-    url = url_stub + api_key + search
-
     try:
+        url_stub = "http://www.omdbapi.com/?"
+        api_key = "apikey=1891fe35"
+        search = parameter + remove_nonascii(value)
+        url = url_stub + api_key + search
+
         url_object = urllib.request.urlopen(url)
         print("-------------------------\n")
         print(url)
@@ -26,7 +26,7 @@ def movie_info(parameter, value):
         print(info)
         print("-------------------------\n")
         data = json.loads(info)
-    except urllib.error.HTTPError as err:
+    except :
         print("Invalid url request, something went wrong" )
         data={}
     return data;

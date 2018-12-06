@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
-      .footer{
-      position:absolute;
-      bottom:10;
-      left:0;
+      footer {
+        background-color:lightgrey;
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
       }
+      
     </style>
   </head>
 
@@ -20,7 +23,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="/">SharingIsKaring</a>
+            <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> SharingIsKaring</a>
           </div>
           {% block header %}
           {% endblock %}
@@ -31,10 +34,8 @@
       {% block content %}
       {% endblock %}
       <footer class="footer">
-	<br>
-	<hr>
-	&copy; Copyright 2018 SharingIsKaring
+       	&copy; Copyright 2018 SharingIsKaring
       </footer>
-      <div class="container-fluid">
+    </div>
   </body>
 </html>

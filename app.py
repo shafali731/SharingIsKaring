@@ -194,8 +194,6 @@ def read_list():
 def read_wishlist():
     if(accounts.is_logged_in()):
        read=db.get_books_wishlist(session['id'])
-       if read[0] == None:
-           read=[]
        data=[]
        for id in read:
            temp = books.google_books_data(id)
@@ -225,8 +223,6 @@ def watch_wishlist():
     if(accounts.is_logged_in()):
        watch=db.get_movies_wishlist(session['id'])
        print(watch)
-       if watch[0] == None:
-           watch=watch[1:]
        data=[]
        for id in watch:
            data.append(movies.movie_info("&i=" , id))

@@ -6,6 +6,7 @@ To do:
 -css (VERY LAST STEP)
 -read api key from file (KAREN AND JABIR)
 -manually typing url when not logged in breaks the code (JABIR)
+-debug false
 
 SharingIsKaring
 Jabir Chowdhury

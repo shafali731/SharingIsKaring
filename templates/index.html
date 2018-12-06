@@ -32,33 +32,32 @@ Homepage
 {% endblock %}
 
 {% block content %}
-  {% if recs_lists|length > 0 %}
-  <h2 class="text-center"> Recommended Movies </h2>
-  {% endif %}
-  {% for recs in recs_lists %}
-  {% for movie in recs %}
-  <div class="container-fluid">
-    <div class="row" >
-      <div class="col-md-1" >
-	<a href={{movie.site_link}}>
-	  <img src={{movie["Poster"] }} width="100%" height="100%" />
-	</a>
+{% if recs_lists|length > 0 %}
+<h2 class="text-center"> Recommended Movies </h2>
+{% for recs in recs_lists %}
+{% for movie in recs %}
+<div class="container-fluid">
+  <div class="row" >
+    <div class="col-md-1" >
+      <a href={{movie.site_link}}>
+	<img src={{movie["Poster"] }} width="100%" height="100%" />
+      </a>
+    </div>
+    <div class="col-md-9" >
+      <div class="row" style="background-color:yellow;">
+	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
       </div>
-      <div class="col-md-9" >
-	<div class="row" style="background-color:yellow;">
-	  <a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
-	</div>
-	<div class="row">
-	  Rated: {{movie["Rated"]}}
-	</div>
-	<br>
-	<div class="row">
-	  <b>Plot: </b>{{movie["Plot"]}}
-	</div>
+      <div class="row">
+	Rated: {{movie["Rated"]}}
+      </div>
+      <br>
+      <div class="row">
+	<b>Plot: </b>{{movie["Plot"]}}
       </div>
     </div>
-  </div><br><br>
-  {% endfor %}
-  {% endfor %}
-
+  </div>
+</div><br><br>
+{% endfor %}
+{% endfor %}
+{% endif %}
 {% endblock %}

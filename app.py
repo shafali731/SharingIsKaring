@@ -1,4 +1,4 @@
-import os
+import os, random
 
 from flask import Flask, request, render_template, session, redirect, flash, url_for
 
@@ -17,7 +17,7 @@ def index():
         total = 0
         for id in watch:
             rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
-            data.append(rec)
+            data.append([rec[random.randint(0, len(rec))]])
         print(data)
         print(total)
         return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data)

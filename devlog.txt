@@ -1,11 +1,11 @@
 To do:
--comments for functions
--home page (trending)
--movie and book lists
-       -if time, include buttons within lists as well
--update design doc
--update readme
--css
+-comments for functions (EVERYONE)
+-home page recs (KAREN AND JABIR)
+-update design doc (KAREN)
+-update readme (SHAFALI)
+-css (VERY LAST STEP)
+-read api key from file (KAREN AND JABIR)
+-manually typing url when not logged in breaks the code (JABIR)
 
 SharingIsKaring
 Jabir Chowdhury

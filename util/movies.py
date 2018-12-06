@@ -4,11 +4,13 @@ import urllib.request, json
 #tastedive 324992-SoftdevP-U4MUASLY
 
 def remove_nonascii(text):
+    '''removes non_ascii characters'''
     text = ''.join(i for i in text if ord(i)<128)
-    text = text.replace("&", "")
+    #text = text.replace("&", "")
     return text
 
 def movie_info(parameter, value):
+    '''retrieves movie information from OMDb API based on the parameter and value'''
     try:
         url_stub = "http://www.omdbapi.com/?"
         api_key = "apikey=1891fe35"
@@ -32,6 +34,7 @@ def movie_info(parameter, value):
     return data;
 
 def better_movie_list(old_list):
+    '''makes a more comprehensive list of movie dictionaries (initially generated from tastedive) using OMDb'''
     new_list = []
     if isinstance(old_list, list):
         for movie in old_list:
@@ -42,14 +45,12 @@ def better_movie_list(old_list):
     return new_list
 
 def movie_rec(parameter, value):
+    '''retrieves movie recommendations based on the parameter and value'''
     url_stub = "https://tastedive.com/api/similar?"
     api_key = "k=324992-SoftdevP-U4MUASLY"
-    #parameter  =
     search = parameter + value
     url = url_stub + api_key + search
-
     hdr = { 'User-Agent' : 'Mozilla/5.0' }
-
     try:
         req = urllib.request.Request(url, headers=hdr)
         url_object = urllib.request.urlopen(req)
@@ -78,5 +79,6 @@ def movie_rec(parameter, value):
     return list
 
 def name_from_id(id):
+    '''Retrieves movie name based on id'''
     data = movie_info("&i=", id)
     return data.get("Title")

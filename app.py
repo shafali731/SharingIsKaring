@@ -7,11 +7,20 @@ from util import dbcommands as db, accounts, movies, books
 app = Flask(__name__)
 app.secret_key = os.urandom(32)
 
-
 @app.route('/')
 def index():
     if (accounts.is_logged_in()):
-       return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]) )
+        watch = db.get_movies_watched(session['id'])
+        print("watched")
+        print(watch)
+        data = []
+        total = 0
+        for id in watch:
+            rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
+            data.append(rec)
+        print(data)
+        print(total)
+        return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data)
     return render_template('index.html' , loggedIn=False)
 
 @app.route('/login')
@@ -65,7 +74,7 @@ def book(bookID):
 @app.route('/movie_info/<movieID>')
 def movie(movieID):
     dict = movies.movie_info("&i=", movieID)
-    recs = rec_list = movies.movie_rec(dict["Title"].replace(" " , "+"))
+    recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
     print(recs)
     if(accounts.is_logged_in()):
         alreadyWatched = db.get_movies_watched(session["id"])

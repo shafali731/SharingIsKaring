@@ -41,11 +41,11 @@ def better_movie_list(old_list):
                 new_list.append(dict)
     return new_list
 
-def movie_rec(movie_name):
+def movie_rec(parameter, value):
     url_stub = "https://tastedive.com/api/similar?"
     api_key = "k=324992-SoftdevP-U4MUASLY"
-    parameter = "&q=movie:"
-    search = parameter + movie_name
+    #parameter  =
+    search = parameter + value
     url = url_stub + api_key + search
 
     hdr = { 'User-Agent' : 'Mozilla/5.0' }
@@ -76,3 +76,7 @@ def movie_rec(movie_name):
         print("Invalid url request, something went wrong" )
         list=[]
     return list
+
+def name_from_id(id):
+    data = movie_info("&i=", id)
+    return data.get("Title")

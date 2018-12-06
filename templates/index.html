@@ -32,32 +32,24 @@ Homepage
 {% endblock %}
 
 {% block content %}
-{% if recs_lists|length > 0 %}
-<h2 class="text-center"> Recommended Movies </h2>
-{% for recs in recs_lists %}
-{% for movie in recs %}
 <div class="container-fluid">
-  <div class="row" >
-    <div class="col-md-1" >
+  {% if recs_lists|length > 0 %}
+
+  <h2 class="text-center"> Recommended Movies </h2>
+
+  {% for recs in recs_lists %}
+  {% for movie in recs %}
+  
+    <div class="col-md-2" style="text-align:center;">
       <a href={{movie.site_link}}>
-	<img src={{movie["Poster"] }} width="100%" height="100%" />
+	<img src={{movie["Poster"] }} width="120px" height="160px" />
       </a>
-    </div>
-    <div class="col-md-9" >
-      <div class="row" style="background-color:yellow;">
+      <div class="row">
 	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
       </div>
-      <div class="row">
-	Rated: {{movie["Rated"]}}
-      </div>
-      <br>
-      <div class="row">
-	<b>Plot: </b>{{movie["Plot"]}}
-      </div>
-    </div>
-  </div>
-</div><br><br>
-{% endfor %}
-{% endfor %}
-{% endif %}
-{% endblock %}
+    </div> 
+  {% endfor %}
+  {% endfor %}
+  {% endif %}
+  {% endblock %}
+</div>

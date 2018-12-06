@@ -63,33 +63,31 @@ python -m venv Name_Of_Environment
 ```
 - json
 
-The `json` library is used to parse through the JSON files returned by the API calls. It is a standard library from Python and requires no further action.
+The `json` library is used to parse through the JSON files returned by the API calls. It is a standard library from Python/
 
 - flask
 
-`flask` is the library that runs the app and allows it to be hosted on `localhost`. It is required for the project to work correctly. In order to install flask,
-run the following command:
-
+`flask` is the library that runs the app and allows it to be hosted on `localhost`. It is required for this project. Install flask using this command:
 ```bash
 pip install flask
 ```
 - wheel
 
-`wheel` is an important part of the app and goes hand in hand with `flask`. To install wheel, run the following command:
+`wheel` goes hand in hand with `flask`. To install wheel, run the following command:
 
 ```bash
 pip install wheel
 ```
 - Jinja2
 
-`jinja2` is used to set up templates for the multiple HTML files. It is required by `flask`. To install Jinja2, run the following command:
+`jinja2` is used to set up templates for the multiple HTML files. It is required by `flask`. Install Jinja2 using this command:
 
 ```bash
 pip install jinja2
 ```
 - passlib
 
-`passlib` provides the password hashing and encrpyting services required to store passwords. It can be installed using the command below:
+`passlib` provides the password hashing and encrpyting services required to store passwords. Install passlib using this command:
 
 ```bash
 pip install passlib

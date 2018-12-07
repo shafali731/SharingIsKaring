@@ -92,3 +92,6 @@ pip install jinja2
 ```bash
 pip install passlib
 ```
+
+##API Keys
+To use this application you must generate API keys from the tastedive API and OMDb API.

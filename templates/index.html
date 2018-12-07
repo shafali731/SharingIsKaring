@@ -33,23 +33,34 @@ Homepage
 
 {% block content %}
 <div class="container-fluid">
-  {% if recs_lists|length > 0 %}
-
-  <h2 class="text-center"> Recommended Movies </h2>
-
-  {% for recs in recs_lists %}
-  {% for movie in recs %}
-  
-    <div class="col-md-2" style="text-align:center;">
-      <a href={{movie.site_link}}>
-	<img src={{movie["Poster"] }} width="120px" height="160px" />
-      </a>
-      <div class="row">
-	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
+      <div class="col-md-2">
+      <nav class="navbar navbar-inverse navbar-fixed-left">
+        <ul class="nav navbar-nav" style="height:100%;">
+          <li><a href="/profile">Books read</a></li><br>
+          <li><a href="/movieWatched">Movies Watched</a></li><br>
+          <li><a href="/bookwish">Want to read</a></li><br>
+          <li><a href="/moviewish">Want to watch</a></li><br>
+        </ul>
+      </nav>
       </div>
-    </div> 
-  {% endfor %}
-  {% endfor %}
-  {% endif %}
+      {% if recs_lists|length > 0 %}
+
+      <h2 class="text-center"> Recommended Movies </h2>
+
+      {% for movie in recs_lists %}
+      
+      <div class="col-md-2" style="text-align:center;">
+	<a href={{movie.site_link}}>
+	  <img src={{movie["Poster"] }} width="120px" height="160px" />
+	</a>
+	<div class="row">
+	  <a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
+	</div>
+      </div> 
+      {% endfor %}
+
+      {% else %}   
+      <h2 class="text-center"> Update your watch list to get more recommendations </h2>
+    {% endif %}
   {% endblock %}
 </div>

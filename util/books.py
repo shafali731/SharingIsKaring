@@ -3,6 +3,8 @@ import json
 
 # 324991-stuy-YAU093CG
 def google_books_data(query):
+    '''Returns the search results from google books api using the given
+    query. Results are returned in the form of a dictionary'''
     url="https://www.googleapis.com/books/v1/volumes?q=" + query
     print(url)
     try:
@@ -15,6 +17,8 @@ def google_books_data(query):
     return info
 
 def book_rec(book_name):
+    '''Returns the recommended books from tastedive api using the given
+    book title. Results are returned in the form of a list containing dictionaries'''
     url_stub = "https://tastedive.com/api/similar?"
     api_key = "k=324991-stuy-YAU093CG"
     parameter = "&q=book:"
@@ -50,6 +54,7 @@ def book_rec(book_name):
     return list[0:8]
 
 def remove_nonascii(text):
+    '''Removes the non-ascii characters from the text and returns it.'''
     text = ''.join(i for i in text if ord(i)<128)
     #text = ''.join(i for i in text if i=="%")
     return text

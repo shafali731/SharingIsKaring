@@ -8,6 +8,9 @@ def is_logged_in():
     return "id" in session
 
 def loginAuthentication():
+    '''Authenticates the username and password that the user has entered in the
+    login page. If either one of them is wrong, then it tells them to try again.
+    If they are correct, then it creates a session and redirects them to the homepage.'''
     user_data = db.get_all_user_data() #for updating user_data when there is a new user
     username_input = request.form.get("username")
     password_input = request.form.get("password")
@@ -26,6 +29,10 @@ def loginAuthentication():
     return redirect(url_for('index'))
 
 def signupAuthentication():
+    '''Checks if the username that the user registers with is at least
+    four characters long and that the passwords that they entered twice
+    are the same. If they aren't correct, then tell them to try again.
+    If they are correct, create the account and redirect to the login.'''
     user_data = db.get_all_user_data()
     username_input = request.form.get("username")
     password_input = request.form.get("password")
@@ -40,6 +47,9 @@ def signupAuthentication():
         return redirect(url_for("signup"))
     elif password_input != password_input2:
         flash("Input Same Password in Both Fields!")
+        return redirect(url_for("signup"))
+    elif len(password_input) < 4:
+        flash("Password has to be at least 4!")
         return redirect(url_for("signup"))
     else:
         #adds the user's username and a hashed + salted

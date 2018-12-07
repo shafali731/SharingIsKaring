@@ -1,5 +1,6 @@
 import sqlite3
 
+'''Creates the database with three tables: users, wishlist, and readORWatched.'''
 db = sqlite3.connect("../data/database.db")
 c = db.cursor()
 #create users

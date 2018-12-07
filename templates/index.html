@@ -45,6 +45,7 @@ Homepage
   </div>
   <div class="col-md-10">
   {% if loggedIn %}
+  <div class ="container">
     {% if recs_lists_books|length > 0 %}
         <h2 class="text-center"> Recommended Books </h2>
         {% for dict in recs_lists_books %}
@@ -58,7 +59,7 @@ Homepage
             <div class="col-md-2" style="text-align:center;">
               <a href="/book_info/{{dict["items"][0]["id"]}}">
                  {% if "imageLinks" in dict["items"][0]["volumeInfo"] %}
-                   <img src={{ dict["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] }} width="100%" height="100%" />
+                   <img src={{ dict["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] }} width="120px" height="160px" />
                 {% else %}
                    <img src="../static/genericcover.jpg" width="100%" height="100%" />
                 {% endif %}
@@ -76,7 +77,8 @@ Homepage
         <h2 class="text-center"> Update your read list to get book recommendations </h2>
         <br><br><br><br><br><br><br><br><br><hr>
     {% endif %}
-
+  </div>
+  <div class="container">
     {% if recs_lists|length > 0 %}
 
     <h2 class="text-center"> Recommended Movies </h2>
@@ -96,6 +98,7 @@ Homepage
     {% else %}
     <h2 class="text-center"> Update your watch list to get movie recommendations </h2>
     {% endif %}
+  </div>
   {% else %}
     <h2 class="text-center"> Login to get recommendations </h2>
   {% endif %}

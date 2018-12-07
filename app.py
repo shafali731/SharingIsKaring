@@ -83,14 +83,17 @@ def book(bookID):
     then it displays book recommendations'''
     data = books.google_books_data(bookID)
     # print(data)
-    if(accounts.is_logged_in()):
-        alreadyRead = db.get_books_read(session["id"])
-        read = bookID in alreadyRead
-        wishToRead = db.get_books_wishlist(session["id"])
-        wish = bookID in wishToRead
-        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]), in_read = read, in_wish = wish)
-    else:
-        return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID, loggedIn=False)
+    try:
+        if(accounts.is_logged_in()):
+            alreadyRead = db.get_books_read(session["id"])
+            read = bookID in alreadyRead
+            wishToRead = db.get_books_wishlist(session["id"])
+            wish = bookID in wishToRead
+            return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID ,loggedIn=True, user=db.get_username(session["id"]), in_read = read, in_wish = wish)
+        else:
+            return render_template('book_info.html', dict=data,rec_list = books.book_rec(books.remove_nonascii(data.get("items")[0]["volumeInfo"]["title"].replace(" " , "+"))), bookID=bookID, loggedIn=False)
+    except:
+        return redirect(url_for('index'))
 
 @app.route('/movie_info/<movieID>')
 def movie(movieID):

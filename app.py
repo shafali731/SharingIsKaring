@@ -9,6 +9,9 @@ app.secret_key = os.urandom(32)
 
 @app.route('/')
 def index():
+    '''Renders the homepage for users who are both logged in
+    and logged out. If user is logged in, displays recommendations
+    based on movies added to watched and books added to read.'''
     if (accounts.is_logged_in()):
         watch = db.get_movies_watched(session['id'])
         print("watched")
@@ -25,6 +28,8 @@ def index():
 
 @app.route('/login')
 def login():
+    '''Displays the login page if user is not already logged in. Otherwise,
+    redirects the user to homepage.'''
     if (accounts.is_logged_in()):
         return redirect(url_for('index'))
     return render_template('login.html', success=False)
@@ -38,6 +43,8 @@ def loginAuthenticate():
 
 @app.route('/signup')
 def signup():
+    '''Displays the signup page if user is not already logged in. Otherwise,
+    redirects the user to homepage.'''
     if (accounts.is_logged_in()):
         return redirect(url_for('index'))
     return render_template('signup.html')
@@ -52,14 +59,17 @@ def signupAuthenticate():
 
 @app.route("/logout")
 def logout():
+    '''Deletes the current session and redirects back to login page.'''
     if(accounts.is_logged_in()):
-        '''Deletes the current session and redirects back to login page.'''
         session.pop("id")
-        return redirect(url_for("index"))
+        return redirect(url_for("login"))
     return redirect(url_for('index'))
 
 @app.route('/book_info/<bookID>')
 def book(bookID):
+    '''Displays detailed information about a specific book based on
+    the book's google book id. If tastedive offers recommendations for similar books,
+    then it displays book recommendations'''
     data = books.google_books_data(bookID)
     # print(data)
     if(accounts.is_logged_in()):
@@ -73,6 +83,9 @@ def book(bookID):
 
 @app.route('/movie_info/<movieID>')
 def movie(movieID):
+    '''Displays detailed information about a specific movie based on
+    the movie's imdb id. If tastedive offers recommendations for similar movies,
+    then it displays movie recommendations'''
     dict = movies.movie_info("&i=", movieID)
     recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
     print(recs)
@@ -98,6 +111,8 @@ def movie(movieID):
 
 @app.route('/search', methods=["GET"])
 def search():
+    '''If search query is for books, then redirects to book_search.
+    If search query is for books, then redirects to movie_search.'''
     type = request.args.get("type")
     query =request.args.get("query").replace(" " , "+")
     if(query==""):
@@ -109,6 +124,8 @@ def search():
 
 @app.route('/book_search/<query>')
 def book_search(query):
+    '''Displays book results for search query using google books api.
+    If no results are found, displays no results message.'''
     if(query==""):
         return redirect(url_for('index'))
     data = books.google_books_data(query)
@@ -119,6 +136,8 @@ def book_search(query):
 
 @app.route('/movie_search/<query>')
 def movie_search(query):
+    '''Displays movie results for search query using OMDB api.
+    If no results are found, displays no results message.'''
     print("inside movie search")
     print(query)
     if(query==""):
@@ -136,36 +155,48 @@ def movie_search(query):
 
 @app.route("/alreadyRead" , methods=["GET"])
 def render_read():
+    '''Adds a specific book to the readORWatched table in the
+    database'''
     id = request.args.get("ID")
     db.add_read(session["id"] ,id)
     return redirect(url_for('book' , bookID = id))
 
 @app.route("/wishToRead" , methods=["GET"])
 def render_read_wishlist():
+    '''Adds a specific book to the wishlist table in the
+    database'''
     id = request.args.get("ID")
     db.add_wishlist_book(session["id"] ,id)
     return redirect(url_for('book' , bookID = id))
 
 @app.route("/alreadyWatched" , methods=["GET"])
 def render_watched():
+    '''Adds a specific movie to the readORWatched table in the
+    database'''
     id = request.args.get("ID")
     db.add_watched(session["id"] ,id)
     return redirect(url_for('movie' , movieID = id))
 
 @app.route("/wishToWatch" , methods=["GET"])
 def render_watch_wishlist():
+    '''Adds a specific movie to the readORWatched table in the
+    database'''
     id = request.args.get("ID")
     db.add_wishlist_movie(session["id"] ,id)
     return redirect(url_for('movie' , movieID = id))
 
 @app.route("/removeReadBook" , methods=["GET"])
 def remove_book_readOrwatched():
+    '''removes a specific book from the readORWatched table in the
+    database'''
     id = request.args.get("ID")
     db.remove_book_read(session["id"], id)
     return redirect(url_for('book' , bookID = id))
 
 @app.route("/removeWishBook" , methods=["GET"])
 def remove_book_wishlist():
+    '''removes a specific book from the wishlist table in the
+    database'''
     id = request.args.get("ID")
     print(id)
     db.remove_book_wish(session["id"], id)
@@ -173,18 +204,24 @@ def remove_book_wishlist():
 
 @app.route("/removeWatchedMovie" , methods=["GET"])
 def remove_movie_readOrwatched():
+    '''removes a specific movie from the readORWatched table in the
+    database'''
     id = request.args.get("ID")
     db.remove_movie_watched(session["id"], id)
     return redirect(url_for('movie' , movieID = id))
 
 @app.route("/removeWishMovie" , methods=["GET"])
 def remove_movie_wishlist():
+    '''removes a specific movie from the wishlist table in the
+    database'''
     id = request.args.get("ID")
     db.remove_movie_wish(session["id"], id)
     return redirect(url_for('movie' , movieID = id))
 
 @app.route("/profile" , methods=["GET"])
 def read_list():
+    '''Displays a profile page for users where they
+    can view the books they marked as read'''
     if(accounts.is_logged_in()):
        read=db.get_books_read(session['id'])
        data=[]
@@ -201,6 +238,8 @@ def read_list():
 
 @app.route("/bookwish" , methods=["GET"])
 def read_wishlist():
+    '''Displays a profile page for users where they
+    can view the books they wish to read'''
     if(accounts.is_logged_in()):
        read=db.get_books_wishlist(session['id'])
        data=[]
@@ -217,6 +256,8 @@ def read_wishlist():
 
 @app.route("/movieWatched" , methods=["GET"])
 def watch_list():
+    '''Displays a profile page for users where they
+    can view the movies they marked as watched'''
     if(accounts.is_logged_in()):
        watch=db.get_movies_watched(session['id'])
        data=[]
@@ -229,6 +270,8 @@ def watch_list():
 
 @app.route("/moviewish" , methods=["GET"])
 def watch_wishlist():
+    '''Displays a profile page for users where they
+    can view the movies they wish to watch'''
     if(accounts.is_logged_in()):
        watch=db.get_movies_wishlist(session['id'])
        print(watch)

@@ -100,29 +100,35 @@ def movie(movieID):
     '''Displays detailed information about a specific movie based on
     the movie's imdb id. If tastedive offers recommendations for similar movies,
     then it displays movie recommendations'''
-    dict = movies.movie_info("&i=", movieID)
-    recs = []
-    recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
-    # print(recs)
-    if(accounts.is_logged_in()):
-        alreadyWatched = db.get_movies_watched(session["id"])
-        watched = movieID in alreadyWatched
-        wishToWatch = db.get_movies_wishlist(session["id"])
-        wish = movieID in wishToWatch
-        return render_template('movie_info.html',
-                           **dict,
-                           movieID=dict.get('imdbID'),
-                           rec_list = recs,
-                           loggedIn=True, user=db.get_username(session["id"]),
-                           in_watched = watched,
-                           in_wish = wish
-                           )
-    else:
-        return render_template('movie_info.html',
-                           **dict,
-                           movieID=dict.get('imdbID'),
-                           rec_list = recs,
-                           loggedIn=False)
+    try:
+        dict = movies.movie_info("&i=", movieID)
+        recs = []
+        try:
+            recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
+        except:
+            print("Wrong API_KEY")
+        # print(recs)
+        if(accounts.is_logged_in()):
+            alreadyWatched = db.get_movies_watched(session["id"])
+            watched = movieID in alreadyWatched
+            wishToWatch = db.get_movies_wishlist(session["id"])
+            wish = movieID in wishToWatch
+            return render_template('movie_info.html',
+                               **dict,
+                               movieID=dict.get('imdbID'),
+                               rec_list = recs,
+                               loggedIn=True, user=db.get_username(session["id"]),
+                               in_watched = watched,
+                               in_wish = wish
+                               )
+        else:
+            return render_template('movie_info.html',
+                               **dict,
+                               movieID=dict.get('imdbID'),
+                               rec_list = recs,
+                               loggedIn=False)
+    except:
+        return redirect(url_for('index'))
 
 @app.route('/search', methods=["GET"])
 def search():
@@ -155,18 +161,21 @@ def movie_search(query):
     If no results are found, displays no results message.'''
     # print("inside movie search")
     # print(query)
-    if(query==""):
-        return redirect(url_for('index'))
-    list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
+    try:
+        if(query==""):
+            return redirect(url_for('index'))
+        list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
 
-    if(accounts.is_logged_in()):
-        return render_template('movie_search.html',
-                               query=query,
-                               list=list,
-                               loggedIn=True,
-                               user=db.get_username(session["id"]))
-    else:
-        return render_template('movie_search.html', query=query, list=list, loggedIn=False)
+        if(accounts.is_logged_in()):
+            return render_template('movie_search.html',
+                                   query=query,
+                                   list=list,
+                                   loggedIn=True,
+                                   user=db.get_username(session["id"]))
+        else:
+            return render_template('movie_search.html', query=query, list=list, loggedIn=False)
+    except:
+        return redirect(url_for('index'))
 
 @app.route("/alreadyRead" , methods=["GET"])
 def render_read():

@@ -7,7 +7,7 @@ def get_key(key_type):
     '''Gets the api key from keys.JSON base on the key_type'''
     with open('keys.JSON', 'r') as f:
         keys = json.load(f)
-        print(keys)
+        #print(keys)
     return keys.get(key_type)
 
 def remove_nonascii(text):
@@ -26,18 +26,18 @@ def movie_info(parameter, value):
         url = url_stub + api_key + search
 
         url_object = urllib.request.urlopen(url)
-        print("-------------------------\n")
-        print(url)
-        print("-------------------------\n")
-        print(url_object)
-        print("-------------------------\n")
+        #print("-------------------------\n")
+        #print(url)
+        #print("-------------------------\n")
+        #print(url_object)
+        #print("-------------------------\n")
         info = url_object.read()
-        print("-------------------------\n")
-        print(info)
-        print("-------------------------\n")
+        #print("-------------------------\n")
+        #print(info)
+        #print("-------------------------\n")
         data = json.loads(info)
     except :
-        print("Invalid url request, something went wrong" )
+        #print("Invalid url request, something went wrong" )
         data={}
     return data;
 
@@ -63,15 +63,15 @@ def movie_rec(parameter, value):
         req = urllib.request.Request(url, headers=hdr)
         url_object = urllib.request.urlopen(req)
 
-        print("-------------------------\n")
-        print(url)
-        print("-------------------------\n")
-        print(url_object)
-        print("-------------------------\n")
+#        print("-------------------------\n")
+#        print(url)
+#        print("-------------------------\n")
+#        print(url_object)
+#        print("-------------------------\n")
         info = url_object.read()
-        print("-------------------------\n")
-        print(info)
-        print("-------------------------\n")
+#        print("-------------------------\n")
+#        print(info)
+#        print("-------------------------\n")
         data = json.loads(info)
         list = []
         try:

@@ -44,7 +44,7 @@ Homepage
     </nav>
   </div>
   <div class="col-md-10">
-
+  {% if loggedIn %}
     {% if recs_lists_books|length > 0 %}
         <h2 class="text-center"> Recommended Books </h2>
         {% for dict in recs_lists_books %}
@@ -96,6 +96,9 @@ Homepage
     {% else %}
     <h2 class="text-center"> Update your watch list to get movie recommendations </h2>
     {% endif %}
+  {% else %}
+    <h2 class="text-center"> Login to get recommendations </h2>
+  {% endif %}
     {% endblock %}
   </div>
 </div>

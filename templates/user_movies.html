@@ -1,72 +1,40 @@
 {% extends "index.html" %}
 
 {% block title %}
- {{title}}
+{{title}}
 {% endblock %}
 
 {% block content %}
-<div class = "container">
-  <div class ="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-10">
-      <h1> {{title}} </h1>
-    </div>
-  </div>
-</div>
 <div class="container-fluid">
-  <div class="row" >
-    <div class="col-md-2">
-      <nav class="navbar navbar-inverse navbar-fixed-left">
-        <ul class="nav navbar-nav" style="height:100%;">
-          <li><a href="/profile">Books read</a></li><br>
-          <li><a href="/movieWatched">Movies Watched</a></li><br>
-          <li><a href="/bookwish">Want to read</a></li><br>
-          <li><a href="/moviewish">Want to watch</a></li><br>
-        </ul>
-      </nav>
-    </div>
-    <div class="col-md-10">
-      {% if data|length > 0 %}
-        {% for movie in data %}
-        <div class="container-fluid">
-          <div class="row" >
-            <div class="col-md-2" >
-              <a href="/movie_info/{{movie["imdbID"]}}">
-         <img src={{movie["Poster"] }} width="100%" height="100%" />
-              </a>
-            </div>
-            <div class="col-md-8" >
-              <div class="row" style="background-color:yellow;">
-         <a href="/movie_info/{{movie["imdbID"]}}">{{movie["Title"]}} </a>
-              </div>
-              <div class="row">
-         Rated: {{movie["Rated"]}} &nbsp; Released: {{movie["Released"]}}
-              </div>
-              <br>
-              <div class="row">
-         <b>Plot: </b>{{movie["Plot"]}}
-              </div>
-            </div>
-            <!-- <div class="col-md-2">
-              <br><br><br>
-              <div class="row">
-                <button type="button" class="btn btn-primary">Mark as watched</button>
-              </div>
-              <br>
-              <div class="row">
-                <button type="button" class="btn btn-warning">Add to watchlist</button>
-              </div>
-            </div> -->
-          </div>
-        </div>
-        <hr>
-        {% endfor %}
-        {% else %}
-         <h3> {{no_results}} </h3>
-        {% endif %}
+  <div class="col-md-2">
+    <nav class="navbar navbar-inverse navbar-fixed-left">
+      <ul class="nav navbar-nav" style="height:100%;">
+        <li><a href="/profile">Books read</a></li><br>
+        <li><a href="/movieWatched">Movies Watched</a></li><br>
+        <li><a href="/bookwish">Want to read</a></li><br>
+        <li><a href="/moviewish">Want to watch</a></li><br>
+      </ul>
+    </nav>
+  </div>
+  <div class="col-md-10">
+    {% if data|length > 0 %}
+    <h2 class="text-center"> {{title}}</h2>
+    {% for movie in data %}
+    <div class="col-md-2" style="text-align:center;">
+      <a href={{movie.site_link}}>
+	<img src={{movie["Poster"] }} width="120px" height="160px" />
+      </a>
+      <div class="row">
+	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
+      </div>
+    </div> 
+    {% endfor %}
+    {% else %}
+    <h3> {{no_results}} </h3>
+    {% endif %}
 
-    </div>
   </div>
 </div>
+
 
 {% endblock %}

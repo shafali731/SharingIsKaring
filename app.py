@@ -24,13 +24,13 @@ def index():
             for id in watch:
                 rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
                 data.append(random.choice(rec))
-        except KeyError as e:
+        except :
             print("tastedive not working for movies")
         try:
             for id in read:
                 rec_books = books.book_rec(books.name_from_id(id).replace(" " , "+"))
                 data_books.append(random.choice(rec_books))
-        except KeyError as e:
+        except :
             print("tastedive not working for books")
         print(data)
         print(total)

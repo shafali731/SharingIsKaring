@@ -238,12 +238,15 @@ def read_list():
     if(accounts.is_logged_in()):
        read=db.get_books_read(session['id'])
        data=[]
-       for id in read:
-           temp = books.google_books_data(id)
-           if "items" in temp:
-               data.append(temp["items"][0])
-           else:
-               continue
+       try:
+           for id in read:
+               temp = books.google_books_data(id)
+               if "items" in temp:
+                   data.append(temp["items"][0])
+               else:
+                   continue
+       except:
+            print("error")
        return render_template("user_books.html", data=data , title="Books Read", no_results="Looks Like You Haven't Read Any Books",
                                loggedIn=True, user=db.get_username(session["id"]))
     else:
@@ -256,12 +259,15 @@ def read_wishlist():
     if(accounts.is_logged_in()):
        read=db.get_books_wishlist(session['id'])
        data=[]
-       for id in read:
-           temp = books.google_books_data(id)
-           if "items" in temp:
-               data.append(temp["items"][0])
-           else:
-               continue
+       try:
+           for id in read:
+               temp = books.google_books_data(id)
+               if "items" in temp:
+                   data.append(temp["items"][0])
+               else:
+                   continue
+       except:
+           print("error")
        return render_template("user_books.html", data=data , title="Want To Read", no_results="Looks Like You Don't Have Any Books Added",
                                loggedIn=True, user=db.get_username(session["id"]))
     else:
@@ -274,8 +280,11 @@ def watch_list():
     if(accounts.is_logged_in()):
        watch=db.get_movies_watched(session['id'])
        data=[]
-       for id in watch:
-           data.append(movies.movie_info("&i=" , id))
+       try:
+           for id in watch:
+               data.append(movies.movie_info("&i=" , id))
+       except:
+           print("error")
        return render_template("user_movies.html", data=data , title="Movies Watched", no_results="Looks Like You Haven't Watched Any Movies",
                                loggedIn=True, user=db.get_username(session["id"]))
     else:
@@ -289,8 +298,11 @@ def watch_wishlist():
        watch=db.get_movies_wishlist(session['id'])
        print(watch)
        data=[]
-       for id in watch:
-           data.append(movies.movie_info("&i=" , id))
+       try:
+           for id in watch:
+               data.append(movies.movie_info("&i=" , id))
+       except:
+           print("error")
        print(data)
        return render_template("user_movies.html", data=data , title="Want To Watch", no_results="Looks Like You Don't Have Any Movies Added",
                                loggedIn=True, user=db.get_username(session["id"]))

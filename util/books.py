@@ -61,3 +61,11 @@ def remove_nonascii(text):
     text = ''.join(i for i in text if ord(i)<128)
     #text = ''.join(i for i in text if i=="%")
     return text
+
+def name_from_id(id):
+    '''Retrieves book name based on id'''
+    try:
+        data = google_books_data(id)
+        return data.get("items")[0]["volumeInfo"]["title"]
+    except:
+        return "Paradise Lost"

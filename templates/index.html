@@ -44,12 +44,45 @@ Homepage
     </nav>
   </div>
   <div class="col-md-10">
+
+    {% if recs_lists_books|length > 0 %}
+        <h2 class="text-center"> Recommended Books </h2>
+        {% for dict in recs_lists_books %}
+         {% if    (("items" in dict) and
+                  ("authors" in dict["items"][0]["volumeInfo"]) and
+                  ("description" in dict["items"][0]["volumeInfo"]) and
+                  ("imageLinks" in dict["items"][0]["volumeInfo"]) and
+                  ("textSnippet" in dict["items"][0]["searchInfo"])
+                   )%}
+
+            <div class="col-md-2" style="text-align:center;">
+              <a href="/book_info/{{dict["items"][0]["id"]}}">
+                 {% if "imageLinks" in dict["items"][0]["volumeInfo"] %}
+                   <img src={{ dict["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"] }} width="100%" height="100%" />
+                {% else %}
+                   <img src="../static/genericcover.jpg" width="100%" height="100%" />
+                {% endif %}
+              </a>
+
+              <div class="row" >
+                <a href="/book_info/{{dict["items"][0]["id"]}}">
+                {{dict["items"][0]["volumeInfo"]["title"]}}
+                </a>
+              </div>
+            </div><br><br>
+         {% endif %}
+        {% endfor %}
+    {% else %}
+        <h2 class="text-center"> Update your read list to get book recommendations </h2>
+        <br><br><br><br><br><br><br><br><br><hr>
+    {% endif %}
+
     {% if recs_lists|length > 0 %}
 
     <h2 class="text-center"> Recommended Movies </h2>
 
     {% for movie in recs_lists %}
-    
+
     <div class="col-md-2" style="text-align:center;">
       <a href={{movie.site_link}}>
 	<img src={{movie["Poster"] }} width="120px" height="160px" />
@@ -57,11 +90,11 @@ Homepage
       <div class="row">
 	<a href={{movie["site_link"]}}>{{movie["Title"]}} </a>
       </div>
-    </div> 
+    </div>
     {% endfor %}
 
-    {% else %}   
-    <h2 class="text-center"> Update your watch list to get more recommendations </h2>
+    {% else %}
+    <h2 class="text-center"> Update your watch list to get movie recommendations </h2>
     {% endif %}
     {% endblock %}
   </div>

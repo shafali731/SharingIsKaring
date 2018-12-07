@@ -18,9 +18,12 @@ def index():
         print(watch)
         data = []
         total = 0
-        for id in watch:
-            rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
-            data.append(random.choice(rec))
+        try:
+            for id in watch:
+                rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
+                data.append(random.choice(rec))
+        except KeyError as e:
+            print("tastedive not working")
         print(data)
         print(total)
         return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data)
@@ -87,7 +90,9 @@ def movie(movieID):
     the movie's imdb id. If tastedive offers recommendations for similar movies,
     then it displays movie recommendations'''
     dict = movies.movie_info("&i=", movieID)
+    recs = []
     recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
+
     print(recs)
     if(accounts.is_logged_in()):
         alreadyWatched = db.get_movies_watched(session["id"])

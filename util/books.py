@@ -42,12 +42,15 @@ def book_rec(book_name):
         print("-------------------------\n")
         data = json.loads(info)
         list = []
-        for book in data["Similar"]["Results"][0:6]:
-            if (book.get("Type")=="book"):
-                book_title = remove_nonascii(book.get("Name").replace(" ", "+"))
-                dict = google_books_data(book_title)
-                if (dict.get("totalItems")!=0):
-                    list.append(dict)
+        try:
+            for book in data["Similar"]["Results"][0:6]:
+                if (book.get("Type")=="book"):
+                    book_title = remove_nonascii(book.get("Name").replace(" ", "+"))
+                    dict = google_books_data(book_title)
+                    if (dict.get("totalItems")!=0):
+                        list.append(dict)
+        except KeyError as e:
+            print("tastedive not working")
     except urllib.error.HTTPError as err:
         print("Invalid url request, something went wrong" )
         list = []

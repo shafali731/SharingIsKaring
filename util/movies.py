@@ -66,13 +66,16 @@ def movie_rec(parameter, value):
         print("-------------------------\n")
         data = json.loads(info)
         list = []
-        for movie in data["Similar"]["Results"]:
-            if (movie.get("Type")=="movie"):
-                movie_title = remove_nonascii(movie.get("Name").replace(" ", "+"))
-                dict = movie_info("&t=", movie_title)
-                if (dict.get("Response")=="True"):
-                    dict["site_link"] = "/movie_info/" + dict.get("imdbID")
-                    list.append(dict)
+        try:
+            for movie in data["Similar"]["Results"]:
+                if (movie.get("Type")=="movie"):
+                    movie_title = remove_nonascii(movie.get("Name").replace(" ", "+"))
+                    dict = movie_info("&t=", movie_title)
+                    if (dict.get("Response")=="True"):
+                        dict["site_link"] = "/movie_info/" + dict.get("imdbID")
+                        list.append(dict)
+        except KeyError as e:
+            print("tastedive not working")
     except urllib.error.HTTPError as err:
         print("Invalid url request, something went wrong" )
         list=[]

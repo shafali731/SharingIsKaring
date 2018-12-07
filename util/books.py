@@ -7,14 +7,14 @@ def get_key(key_type):
     '''Gets the api key from keys.JSON base on the key_type'''
     with open('keys.JSON', 'r') as f:
         keys = json.load(f)
-        print(keys)
+        # print(keys)
     return keys.get(key_type)
 
 def google_books_data(query):
     '''Returns the search results from google books api using the given
     query. Results are returned in the form of a dictionary'''
     url="https://www.googleapis.com/books/v1/volumes?q=" + query
-    print(url)
+    # print(url)
     try:
         response = urllib.request.Request(url,headers={'User-Agent': 'Mozilla/5.0'})
         info = urllib.request.urlopen(response)
@@ -39,15 +39,15 @@ def book_rec(book_name):
         req = urllib.request.Request(url, headers=hdr)
         url_object = urllib.request.urlopen(req)
 
-        print("-------------------------\n")
-        print(url)
-        print("-------------------------\n")
-        print(url_object)
-        print("-------------------------\n")
+        # print("-------------------------\n")
+        # print(url)
+        # print("-------------------------\n")
+        # print(url_object)
+        # print("-------------------------\n")
         info = url_object.read()
-        print("-------------------------\n")
-        print(info)
-        print("-------------------------\n")
+        # print("-------------------------\n")
+        # print(info)
+        # print("-------------------------\n")
         data = json.loads(info)
         list = []
         try:

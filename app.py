@@ -14,8 +14,8 @@ def index():
     based on movies added to watched and books added to read.'''
     if (accounts.is_logged_in()):
         watch = db.get_movies_watched(session['id'])
-        print("watched")
-        print(watch)
+        # print("watched")
+        # print(watch)
         data = []
         total = 0
         read = db.get_books_read(session['id'])
@@ -32,8 +32,8 @@ def index():
                 data_books.append(random.choice(rec_books))
         except :
             print("tastedive not working for books")
-        print(data)
-        print(total)
+        # print(data)
+        # print(total)
         return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data, recs_lists_books=data_books)
     return render_template('index.html' , loggedIn=False)
 
@@ -100,8 +100,7 @@ def movie(movieID):
     dict = movies.movie_info("&i=", movieID)
     recs = []
     recs = rec_list = movies.movie_rec("&q=movie:", dict["Title"].replace(" " , "+"))
-
-    print(recs)
+    # print(recs)
     if(accounts.is_logged_in()):
         alreadyWatched = db.get_movies_watched(session["id"])
         watched = movieID in alreadyWatched
@@ -151,8 +150,8 @@ def book_search(query):
 def movie_search(query):
     '''Displays movie results for search query using OMDB api.
     If no results are found, displays no results message.'''
-    print("inside movie search")
-    print(query)
+    # print("inside movie search")
+    # print(query)
     if(query==""):
         return redirect(url_for('index'))
     list = movies.better_movie_list(movies.movie_info("&s=", query).get("Search"))
@@ -211,7 +210,7 @@ def remove_book_wishlist():
     '''removes a specific book from the wishlist table in the
     database'''
     id = request.args.get("ID")
-    print(id)
+    # print(id)
     db.remove_book_wish(session["id"], id)
     return redirect(url_for('book' , bookID = id))
 
@@ -296,14 +295,14 @@ def watch_wishlist():
     can view the movies they wish to watch'''
     if(accounts.is_logged_in()):
        watch=db.get_movies_wishlist(session['id'])
-       print(watch)
+       # print(watch)
        data=[]
        try:
            for id in watch:
                data.append(movies.movie_info("&i=" , id))
        except:
            print("error")
-       print(data)
+       # print(data)
        return render_template("user_movies.html", data=data , title="Want To Watch", no_results="Looks Like You Don't Have Any Movies Added",
                                loggedIn=True, user=db.get_username(session["id"]))
     else:
@@ -312,5 +311,5 @@ def watch_wishlist():
 
 
 if __name__ == '__main__':
-    app.debug = True  # Set to `False` before release
+    app.debug = False  # Set to `False` before release
     app.run()

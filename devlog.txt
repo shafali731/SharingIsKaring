@@ -199,5 +199,6 @@ jabirC -- 2018-12-07 04:50
 2. Fixed several bugs with try statements.
 3. Added docstrings to app.py and some util functions.
 4. Fixed signup page alignment error.
-5. Removed print statements, set app.debug to false
+5. Recreated database
+6. Removed print statements, set app.debug to false
 ==============================================================

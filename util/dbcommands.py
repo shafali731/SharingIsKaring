@@ -131,7 +131,7 @@ def remove_book_wish(userID, ID):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "DELETE FROM wishlist WHERE userID = ? AND ID = ? AND type = ?;"
-    print(command)
+    # print(command)
     c.execute(command,(userID, ID, "book"))
     db.commit()
     db.close()

@@ -23,9 +23,9 @@
     <div class="col-md-2" style="text-align:center;">
       <a href="/book_info/{{book["id"]}}">	
         {% if "imageLinks" in book["volumeInfo"] %}
-        <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }} width="100%" height="100%" />
+        <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }}width="120px" height="160px" />
         {% else %}
-        <img src="../static/genericcover.jpg" width="100%" height="100%" />
+        <img src="../static/genericcover.jpg" width="100%" height="100%" width="120px" height="160px"/>
         {% endif %}
       </a>
       <div class="row">

@@ -18,15 +18,23 @@ def index():
         print(watch)
         data = []
         total = 0
+        read = db.get_books_read(session['id'])
+        data_books = []
         try:
             for id in watch:
                 rec = movies.movie_rec("&q=movie:", movies.name_from_id(id).replace(" " , "+"))
                 data.append(random.choice(rec))
         except KeyError as e:
-            print("tastedive not working")
+            print("tastedive not working for movies")
+        try:
+            for id in read:
+                rec_books = books.book_rec(books.name_from_id(id).replace(" " , "+"))
+                data_books.append(random.choice(rec_books))
+        except KeyError as e:
+            print("tastedive not working for books")
         print(data)
         print(total)
-        return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data)
+        return render_template('index.html', loggedIn=True, user=db.get_username(session["id"]), recs_lists=data, recs_lists_books=data_books)
     return render_template('index.html' , loggedIn=False)
 
 @app.route('/login')

@@ -21,7 +21,7 @@
     <h2 class="text-center"> {{title}}</h2>
     {% for movie in data %}
     <div class="col-md-2" style="text-align:center;">
-      <a href={{movie.site_link}}>
+      <a href="/movie_info/{{movie["imdbID"]}}">
 	<img src={{movie["Poster"] }} width="120px" height="160px" />
       </a>
       <div class="row">

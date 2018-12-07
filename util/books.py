@@ -2,6 +2,13 @@ import urllib.request
 import json
 
 # 324991-stuy-YAU093CG
+
+def get_key(key_type):
+    with open('keys.JSON', 'r') as f:
+        keys = json.load(f)
+        print(keys)
+    return keys.get(key_type)
+
 def google_books_data(query):
     '''Returns the search results from google books api using the given
     query. Results are returned in the form of a dictionary'''
@@ -20,7 +27,7 @@ def book_rec(book_name):
     '''Returns the recommended books from tastedive api using the given
     book title. Results are returned in the form of a list containing dictionaries'''
     url_stub = "https://tastedive.com/api/similar?"
-    api_key = "k=324991-stuy-YAU093CG"
+    api_key = get_key('tastedive_book')
     parameter = "&q=book:"
     search = parameter + book_name
     url = url_stub + api_key + search

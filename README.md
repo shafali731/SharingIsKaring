@@ -93,5 +93,13 @@ pip install jinja2
 pip install passlib
 ```
 
-##API Keys
+## API Keys
 To use this application you must generate API keys from the tastedive API and OMDb API.
+
+Click [here](http://www.omdbapi.com/apikey.aspx) and follow the instructions to get your OMDb API key.
+
+Click [here](https://tastedive.com/read/api) and follow the instructions to get your tastedive API key.
+
+Once you have your keys, replace the placeholder keys in the keys.JSON file in the root directory. You will notice that there are two tastedive API keys in the JSON file. Fear not. You may use the same key for tastedive_movie and tastedive_book. The reason there are two is to prevent using up the API key limit.
+
+The application is now ready to be used!

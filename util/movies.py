@@ -4,6 +4,7 @@ import urllib.request, json, os
 #tastedive 324992-SoftdevP-U4MUASLY
 
 def get_key(key_type):
+    '''Gets the api key from keys.JSON base on the key_type'''
     with open('keys.JSON', 'r') as f:
         keys = json.load(f)
         print(keys)
@@ -18,7 +19,7 @@ def remove_nonascii(text):
 def movie_info(parameter, value):
     '''retrieves movie information from OMDb API based on the parameter and value'''
     try:
- 
+
         url_stub = "http://www.omdbapi.com/?"
         api_key = get_key('OMDB')
         search = parameter + remove_nonascii(value)
@@ -92,4 +93,3 @@ def name_from_id(id):
     '''Retrieves movie name based on id'''
     data = movie_info("&i=", id)
     return data.get("Title")
-

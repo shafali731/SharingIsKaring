@@ -4,6 +4,7 @@ import json
 # 324991-stuy-YAU093CG
 
 def get_key(key_type):
+    '''Gets the api key from keys.JSON base on the key_type'''
     with open('keys.JSON', 'r') as f:
         keys = json.load(f)
         print(keys)

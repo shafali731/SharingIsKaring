@@ -20,7 +20,7 @@
     {% if data|length > 0 %}
     <h2 class="text-center"> {{title}}</h2>
     {% for book in data %}
-    <div class="col-md-2" style="text-align:center;">
+    <div class="col-md-2" style="text-align:center;height:220px;">
       <a href="/book_info/{{book["id"]}}">	
         {% if "imageLinks" in book["volumeInfo"] %}
         <img src={{ book["volumeInfo"]["imageLinks"]["thumbnail"] }}width="120px" height="160px" />
